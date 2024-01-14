@@ -4,6 +4,7 @@ print = console.log
 players = []
 factor = 0
 rond = 0
+pressed = false # debouncing
 
 names = "Adam Bert Carl Dan Erik Fred Gert Hans Ivar Jarl Klas Lars Mats Nils Olof Per".split ' '
 
@@ -66,8 +67,13 @@ window.draw = ->
 		player.draw()
 
 window.mousePressed = ->
+	if pressed then return
+	pressed = true
 	n = players.length
 	rond = (rond+1) % (n-1)
 	for i in range n
 		players[i].index1 = places[rond][i]
 	factor = 0 
+
+window.mouseReleased = ->
+	pressed = false
