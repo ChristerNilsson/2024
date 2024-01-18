@@ -1,5 +1,7 @@
 from index import Relocation, FinalScoring, Evaluate, HasSuccessors
 
+LITTERA = "ABCDEF abcdef "
+
 def dump(house,depth,action):
     print()
     print('* ' * depth, list(reversed(house[0:7])), action)
@@ -14,7 +16,7 @@ def alphaBeta(house, depthMax, player):
 
 
 def maxAlphaBeta(house, depthMax, depth, alpha, beta, playerShop, action):
-    dump(house, depth, action)
+    # dump(house, depth, action)
     if not HasSuccessors(house):
         FinalScoring(house)
         return Evaluate(house, playerShop, (playerShop + 7) % 14)
@@ -30,9 +32,9 @@ def maxAlphaBeta(house, depthMax, depth, alpha, beta, playerShop, action):
             # tempValue = None
 
             if Relocation(tempHouse, i):
-                tempValue = maxAlphaBeta(tempHouse, depthMax, depth + 1, alpha, beta, playerShop, action + "ABCDEF abcdef "[i])
+                tempValue = maxAlphaBeta(tempHouse, depthMax, depth + 1, alpha, beta, playerShop, action + LITTERA[i])
             else:
-                tempValue = minAlphaBeta(tempHouse, depthMax, depth + 1, alpha, beta, playerShop, action + "ABCDEF abcdef "[i])
+                tempValue = minAlphaBeta(tempHouse, depthMax, depth + 1, alpha, beta, playerShop, action + LITTERA[i])
 
             if alpha < tempValue:
                 alpha = tempValue
@@ -61,9 +63,9 @@ def minAlphaBeta(house, depthMax, depth, alpha, beta, playerShop, action):
             # tempValue = None
 
             if Relocation(tempHouse, i):
-                tempValue = minAlphaBeta(tempHouse, depthMax, depth + 1, alpha, beta, playerShop, action + "ABCDEF abcdef "[i])
+                tempValue = minAlphaBeta(tempHouse, depthMax, depth + 1, alpha, beta, playerShop, action + LITTERA[i])
             else:
-                tempValue = maxAlphaBeta(tempHouse, depthMax, depth + 1, alpha, beta, playerShop, action + "ABCDEF abcdef "[i])
+                tempValue = maxAlphaBeta(tempHouse, depthMax, depth + 1, alpha, beta, playerShop, action + LITTERA[i])
 
             if beta > tempValue:
                 beta = tempValue
@@ -72,28 +74,35 @@ def minAlphaBeta(house, depthMax, depth, alpha, beta, playerShop, action):
                 break
         return beta
 
-def makeAllMoves(house,actions="",positions=[]):
-    for i in range(6):
+def makeAllMoves(house, offset, actions="",positions=[]): # offset in [0,7]
+    for i in range(offset,offset+6):
         if house[i] == 0: continue
-        letter = "ABCDEF"[i]
+        letter = LITTERA[i]
         house1 = house.copy()
         if Relocation(house1,i):
-            if house1[0:6] == [0, 0, 0, 0, 0, 0]:
+            if house1[offset:offset+6] == [0, 0, 0, 0, 0, 0]:
                 positions.append([actions + letter, house1])
             else:
-                makeAllMoves(house1, actions+letter, positions)
+                makeAllMoves(house1, offset, actions+letter, positions)
         else:
             positions.append([actions+letter,house1])
     return positions
 
 
-assert('A B CA CB CD CE CF D E F' == ' '.join([move[0] for move in makeAllMoves([4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4, 0], "", [])]))
+assert('A B CA CB CD CE CF D E F' == ' '.join([move[0] for move in makeAllMoves([4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4, 0], 0,"", [])]))
+assert(912 == len(makeAllMoves([6, 5, 4, 3, 2, 1, 0, 4, 4, 4, 4, 4, 4, 0],0,"",[])))
+assert(232 == len(makeAllMoves([0, 5, 4, 3, 2, 1, 0, 4, 4, 4, 4, 4, 4, 0],0,"",[])))
+assert( 56 == len(makeAllMoves([0, 0, 4, 3, 2, 1, 0, 4, 4, 4, 4, 4, 4, 0],0,"",[])))
+assert( 11 == len(makeAllMoves([0, 0, 0, 3, 2, 1, 0, 4, 4, 4, 4, 4, 4, 0],0,"",[])))
+assert(  2 == len(makeAllMoves([0, 0, 0, 0, 2, 1, 0, 4, 4, 4, 4, 4, 4, 0],0,"",[])))
+assert(  1 == len(makeAllMoves([0, 0, 0, 0, 0, 1, 0, 4, 4, 4, 4, 4, 4, 0],0,"",[])))
+assert(  0 == len(makeAllMoves([0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 0],0,"",[])))
 
-assert(912 == len(makeAllMoves([6, 5, 4, 3, 2, 1, 0, 4, 4, 4, 4, 4, 4, 0],"",[])))
-assert(232 == len(makeAllMoves([0, 5, 4, 3, 2, 1, 0, 4, 4, 4, 4, 4, 4, 0],"",[])))
-assert( 56 == len(makeAllMoves([0, 0, 4, 3, 2, 1, 0, 4, 4, 4, 4, 4, 4, 0],"",[])))
-assert( 11 == len(makeAllMoves([0, 0, 0, 3, 2, 1, 0, 4, 4, 4, 4, 4, 4, 0],"",[])))
-assert(  2 == len(makeAllMoves([0, 0, 0, 0, 2, 1, 0, 4, 4, 4, 4, 4, 4, 0],"",[])))
-assert(  1 == len(makeAllMoves([0, 0, 0, 0, 0, 1, 0, 4, 4, 4, 4, 4, 4, 0],"",[])))
-assert(  0 == len(makeAllMoves([0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 0],"",[])))
-
+assert('a b ca cb cd ce cf d e f' == ' '.join([move[0] for move in makeAllMoves([4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4, 0], 7,"", [])]))
+assert(912 == len(makeAllMoves([4, 4, 4, 4, 4, 4, 0, 6, 5, 4, 3, 2, 1, 0],7,"",[])))
+assert(232 == len(makeAllMoves([4, 4, 4, 4, 4, 4, 0, 0, 5, 4, 3, 2, 1, 0],7,"",[])))
+assert( 56 == len(makeAllMoves([4, 4, 4, 4, 4, 4, 0, 0, 0, 4, 3, 2, 1, 0],7,"",[])))
+assert( 11 == len(makeAllMoves([4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 3, 2, 1, 0],7,"",[])))
+assert(  2 == len(makeAllMoves([4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 2, 1, 0],7,"",[])))
+assert(  1 == len(makeAllMoves([4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 1, 0],7,"",[])))
+assert(  0 == len(makeAllMoves([4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0],7,"",[])))
