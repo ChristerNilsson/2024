@@ -1,10 +1,12 @@
 from index import Relocation, FinalScoring, Evaluate, HasSuccessors
+import time
 
 LITTERA = "ABCDEF abcdef "
 N = 4  # beans per pit
 
-def dump(house,depth,action):
-    return
+
+# def dump(house,depth,action):
+#     return
     # print(' *' * depth, house[6]-house[13], action)
     # print()
     # print(' *' * depth, list(reversed(house[0:7])),action)
@@ -13,74 +15,81 @@ def dump(house,depth,action):
 
 def makeAllMoves(house, player, positions, actions=""): # offset = 0 or 7
     offset = [0,7][player]
+    myAcc = [6,13][player]
     for i in range(offset,offset+6):
         if house[i] == 0: continue
         house1 = house.copy()
         if Relocation(house1,i):
             if house1[offset:offset+6] == [0, 0, 0, 0, 0, 0]:
-                positions.append([house1, actions + LITTERA[i], house1[6] - house1[13]])
+                positions.append([house1, actions + LITTERA[i], house1[myAcc] - house1[19-myAcc]])
             else:
                 makeAllMoves(house1, player, positions, actions + LITTERA[i])
         else:
-            positions.append([house1,actions+LITTERA[i], house1[6]-house1[13]])
+            positions.append([house1,actions+LITTERA[i], house1[myAcc]-house1[19-myAcc]])
     return positions
 
 
-def getMoves(house, player): # offset = 0 or 1
+def getMoves(house, player):
     moves = makeAllMoves(house, player, [], "")
-    moves.sort(key=lambda move: -move[2])
+    if player == 0:
+        moves.sort(key=lambda move: -move[2])
+    else:
+        moves.sort(key=lambda move: -move[2])
     return moves
 
 
 def alphaBeta(house, depthMax, player):
-    if player == 0:
-        curr = maxAlphaBeta(house, depthMax, 0, player)
-    else:
-        curr = minAlphaBeta(house, depthMax, 0, player)
-    dump(house,0,"")
-    return curr
+    alpha = -999
+    beta = 999
+    result = maxAlphaBeta(house, depthMax, 0, alpha, beta, player)
+    # dump(house,0,"")
+    return result
 
-def maxAlphaBeta(house, depthMax, depth, player):  # player = 0 or 1
+
+def maxAlphaBeta(house, depthMax, depth, alpha, beta, player):  # player = 0 or 1
     # dump(house, depth, "")
     opponent = 1 - player
+    myAcc = [6,13][player]
     if not HasSuccessors(house):
         FinalScoring(house)
-        return house[6] - house[13]
+        return house[myAcc] - house[19-myAcc]
     elif depth >= depthMax:
-        return house[6] - house[13]
+        return house[myAcc] - house[19-myAcc]
     else:
-        # startPit = 0 if playerShop == 6 else 7
         moves = getMoves(house, player)
-        # print(len(moves))
-        best = -999
         top = None
         for [tempHouse,act,value] in moves:
-            curr = minAlphaBeta(tempHouse, depthMax, depth+1, opponent)
-            dump(tempHouse,depth,act)
-            if curr > best:
-                best = curr
+            tempValue = minAlphaBeta(tempHouse, depthMax, depth+1, alpha, beta, opponent)
+            #dump(tempHouse,depth,act)
+            if alpha < tempValue:
+                alpha = tempValue
                 top = [tempHouse,act,value]
-        return top if depth == 0 else best
+            if alpha >= beta:
+                break
+        return top if depth == 0 else alpha
 
-def minAlphaBeta(house, depthMax, depth, player): # 0 or 1
-    # dump(house, depth, "")
-    opponent = 1 - player # Shop = (playerShop + 7) % 14
+
+def minAlphaBeta(house, depthMax, depth, alpha, beta, player): # 0 or 1
+    opponent = 1 - player
+    myAcc = [6,13][player]
     if not HasSuccessors(house):
         FinalScoring(house)
-        return house[6] - house[13]
+        return house[myAcc] - house[19 - myAcc]
     elif depth >= depthMax:
-        return house[6] - house[13]
+        return house[myAcc] - house[19 - myAcc]
     else:
-        # startPit = 0 if playerShop == 6 else 7
         moves = getMoves(house, player)
-        # print(len(moves))
-        best = 999
         for [tempHouse,act,value] in moves:
-            curr = maxAlphaBeta(tempHouse, depthMax, depth + 1, opponent)
-            dump(tempHouse,depth,act)
-            if curr < best:
-                best = curr
-        return best
+            tempValue = maxAlphaBeta(tempHouse, depthMax, depth + 1, alpha, beta, opponent)
+            #dump(tempHouse,depth,act)
+            if beta > tempValue:
+                beta = tempValue
+            if alpha >= beta:
+                break
+        return beta
+
+
+start = time.time_ns()
 
 # assert('A B CA CB CD CE CF D E F' == ' '.join([move[0] for move in makeAllMoves([4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4, 0], 0)]))
 #assert('A B C DA DB DC DE DF EA EB EC EDA EDB EDC EDE EDF EF FA FB FC FDA FDB FDC FDE FDFA FDFB FDFC FDFE FEA FEB FEC FEDA FEDB FEDC FEDE FEDF FEFA FEFB FEFC FEFDA FEFDB FEFDC FEFDE FEFDFA FEFDFB FEFDFC FEFDFE' == ' '.join([move[0] for move in makeAllMoves([3, 3, 3, 3, 2, 1, 0, 3, 3, 3, 3, 2, 1, 0], 0,"",[])]))
@@ -92,7 +101,7 @@ def minAlphaBeta(house, depthMax, depth, player): # 0 or 1
 # assert(  2 == len(makeAllMoves([0, 0, 0, 0, 2, 1, 0, 4, 4, 4, 4, 4, 4, 0],0,"",[])))
 # assert(  1 == len(makeAllMoves([0, 0, 0, 0, 0, 1, 0, 4, 4, 4, 4, 4, 4, 0],0,"",[])))
 # assert(  0 == len(makeAllMoves([0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 0],0,"",[])))
-#
+
 #assert('a b ca cb cd ce cf d e f' == ' '.join([move[0] for move in makeAllMoves([4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4, 0], 7,"", [])]))
 # assert(912 == len(makeAllMoves([4, 4, 4, 4, 4, 4, 0, 6, 5, 4, 3, 2, 1, 0],7,"",[])))
 # assert(232 == len(makeAllMoves([4, 4, 4, 4, 4, 4, 0, 0, 5, 4, 3, 2, 1, 0],7,"",[])))
@@ -107,6 +116,59 @@ def minAlphaBeta(house, depthMax, depth, player): # 0 or 1
 # for move in moves:
 #     print(move)
 
-#print('\nBEST CHOICE:', alphaBeta([N, N, N, N, N, N, 0, N, N, N, N, N, N, 0], 6, 0))  # 0=computer 1=human
 
-print('BEST CHOICE:', alphaBeta([3, 3, 3, 3, 2, 1, 0, 3, 3, 3, 3, 2, 1, 0], 6, 0))  # 0=computer 1=human
+#print('\nBEST CHOICE:', alphaBeta([6, 6, 6, 6, 6, 6, 0, 6, 6, 6, 6, 6, 6, 0], 7, 1))  # 0=computer 1=human
+#print('\nBEST CHOICE:', alphaBeta([6, 0, 7, 7, 7, 7, 1, 7, 6, 6, 6, 6, 6, 0], 10, 1))  # 0=computer 1=human
+#print('\nBEST CHOICE:', alphaBeta([7, 1, 8, 0, 8, 8, 2, 8, 7, 7, 1, 7, 7, 1], 10, 1))  # 0=computer 1=human
+#print('\nBEST CHOICE:', alphaBeta([0, 3, 9, 1, 9, 9, 3, 1, 9, 8, 2, 8, 8, 2], 10, 1))  # 0=computer 1=human
+#print('\nBEST CHOICE:', alphaBeta([6, 0, 7, 7, 7, 7, 1, 7, 6, 6, 6, 6, 6, 0], 6, 1))  # 0=computer 1=human
+#print('\nBEST CHOICE:', alphaBeta([1, 0, 12, 1, 12, 12, 5, 2, 9, 0, 3, 1, 10, 4], 10, 1))  # 0=computer 1=human
+#print('\nBEST CHOICE:', alphaBeta([3,2,1,3,0,14,18,4,0,2,1,3,1,20], 10, 1))  # 0=computer 1=human
+#print('\nBEST CHOICE:', alphaBeta([4,3,2,4,0,0,27,0,1,1,3,5,1,21], 16, 1))  # 0=computer 1=human
+#print('\nBEST CHOICE:', alphaBeta([0,5,4,5,1,0,28,0,1,1,3,0,1,23], 16, 1))  # 0=computer 1=human
+#print('\nBEST CHOICE:', alphaBeta([0,0,1,7,0,0,35,0,0,2,3,0,0,24], 20, 1))  # 0=computer 1=human
+
+print('BEST CHOICE:', alphaBeta([3, 3, 3, 3, 2, 1, 0, 3, 3, 3, 3, 2, 1, 0], 8, 0))  # 0=computer 1=human
+
+# Level 1 (118-kalaha) Resultat: 41-7 Styrka 6
+#print('\nBEST CHOICE:', alphaBeta([4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4, 0], 6, 1))  # 0=computer 1=human
+#print('\nBEST CHOICE:', alphaBeta([5,0,0,7,6,6,2,5,5,0,5,5,0,2], 6, 1))  # 0=computer 1=human
+#print('\nBEST CHOICE:', alphaBeta([0,0,0,0,7,7,3,1,2,3,8,7,0,10], 6, 1))  # 0=computer 1=human
+#print('\nBEST CHOICE:', alphaBeta([0,0,0,0,0,8,4,1,4,4,9,8,0,10], 6, 1))  # 0=computer 1=human
+
+# Level 1 (118-kalaha) Resultat: 35-13 Styrka 4
+#print('\nBEST CHOICE:', alphaBeta([4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4, 0], 4, 1))  # 0=computer 1=human
+#print('\nBEST CHOICE:', alphaBeta([5,0,0,6,6,6,2,5,5,4,4,4,0,1], 4, 1))  # 0=computer 1=human
+#print('\nBEST CHOICE:', alphaBeta([0,0,0,0,7,7,3,1,2,3,7,7,0,11], 4, 1))  # 0=computer 1=human
+#print('\nBEST CHOICE:', alphaBeta([1,1,1,1,0,8,4,2,3,4,1,9,1,12], 4, 1))  # 0=computer 1=human
+#print('\nBEST CHOICE:', alphaBeta([2,1,1,0,0,0,5,1,5,1,3,11,1,17], 4, 1))  # 0=computer 1=human
+#print('\nBEST CHOICE:', alphaBeta([3,0,2,1,0,0,9,0,1,3,2,0,1,26], 4, 1))  # 0=computer 1=human
+#print('\nBEST CHOICE:', alphaBeta([0,1,3,2,0,0,9,0,0,4,2,0,0,27], 4, 1))  # 0=computer 1=human
+#print('\nBEST CHOICE:', alphaBeta([0,0,4,2,0,0,9,0,0,0,3,0,1,29], 4, 1))  # 0=computer 1=human
+
+# Level 2 (118-kalaha) Resultat:  31-17 Styrka 2
+#print('\nBEST CHOICE:', alphaBeta([], 2, 1))  # 0=computer 1=human
+#print('\nBEST CHOICE:', alphaBeta([4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4, 0], 2, 1))  # 0=computer 1=human
+#print('\nBEST CHOICE:', alphaBeta([0,1,7,7,6,6,1,4,4,0,5,5,0,2], 2, 1))  # 0=computer 1=human
+#print('\nBEST CHOICE:', alphaBeta([1,2,0,8,7,7,2,5,5,1,0,6,1,3], 2, 1))  # 0=computer 1=human
+#print('\nBEST CHOICE:', alphaBeta([0,2,0,0,8,8,3,1,2,4,3,9,0,8], 2, 1))  # 0=computer 1=human
+#print('\nBEST CHOICE:', alphaBeta([2,3,1,0,0,10,4,3,4,1,2,1,2,15], 2, 1))  # 0=computer 1=human
+#print('\nBEST CHOICE:', alphaBeta([2,3,0,0,0,10,7,3,0,0,3,2,3,15], 2, 1))  # 0=computer 1=human
+#print('\nBEST CHOICE:', alphaBeta([4,5,2,1,0,0,8,4,1,1,1,2,1,18], 2, 1))  # 0=computer 1=human
+#print('\nBEST CHOICE:', alphaBeta([4,0,0,2,0,0,10,4,0,1,0,0,0,27], 2, 1))  # 0=computer 1=human
+#print('\nBEST CHOICE:', alphaBeta([0,1,1,3,0,0,12,0,0,2,1,1,0,27], 2, 1))  # 0=computer 1=human
+#print('\nBEST CHOICE:', alphaBeta([0,0,2,0,1,0,14,0,0,0,2,2,0,27], 2, 1))  # 0=computer 1=human
+#print('\nBEST CHOICE:', alphaBeta([0,0,0,1,2,0,14,0,0,0,0,1,1,29], 2, 1))  # 0=computer 1=human
+#print('\nBEST CHOICE:', alphaBeta([0,0,0,0,3,0,14,0,0,0,0,0,1,30], 2, 1))  # 0=computer 1=human
+
+# Level 3 (118-kalaha) Resultat:  20-28 Styrka 2
+#print('\nBEST CHOICE:', alphaBeta([], 2, 1))  # 0=computer 1=human
+#print('\nBEST CHOICE:', alphaBeta([4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4, 0], 2, 1))  # 0=computer 1=human
+#print('\nBEST CHOICE:', alphaBeta([0,1,7,6,6,6,1,4,4,0,5,0,6,2], 2, 1))  # 0=computer 1=human
+#print('\nBEST CHOICE:', alphaBeta([0,0,0,7,7,7,2,1,6,2,6,0,6,4], 2, 1))  # 0=computer 1=human
+#print('\nBEST CHOICE:', alphaBeta([1,1,1,0,8,8,3,2,7,3,1,1,7,5], 2, 1))  # 0=computer 1=human
+#print('\nBEST CHOICE:', alphaBeta([0,3,3,1,9,9,3,2,7,3,1,1,0,6], 2, 1))  # 0=computer 1=human
+#print('\nBEST CHOICE:', alphaBeta([0,5,3,1,9,9,3,2,0,4,2,2,1,7], 2, 1))  # 0=computer 1=human
+#print('\nBEST CHOICE:', alphaBeta([0,5,0,1,10,10,3,0,1,0,0,0,0,18], 2, 1))  # 0=computer 1=human
+
+print((time.time_ns()-start)/10**6)
