@@ -1,16 +1,18 @@
-from index import Relocation, FinalScoring, Evaluate, HasSuccessors
+from index import Relocation, FinalScoring, HasSuccessors
 import time
+import random
 
 LITTERA = "ABCDEF abcdef "
 N = 4  # beans per pit
+nodes = 0
 
+def s2(n): return ' ' + str(n) if n<10 else str(n)
 
-# def dump(house,depth,action):
-#     return
-    # print(' *' * depth, house[6]-house[13], action)
-    # print()
-    # print(' *' * depth, list(reversed(house[0:7])),action)
-    # print(' *' * depth, house[7:14], house[6]-house[13])
+def dump(house):
+    print()
+    print('  ' + ' '.join([s2(pit) for pit in reversed(house[0:6])]))
+    print(s2(house[6]),'               ',s2(house[13]))
+    print('  ' + ' '.join([s2(pit) for pit in house[7:13]]))
 
 
 def makeAllMoves(house, player, positions, actions=""): # offset = 0 or 7
@@ -31,23 +33,17 @@ def makeAllMoves(house, player, positions, actions=""): # offset = 0 or 7
 
 def getMoves(house, player):
     moves = makeAllMoves(house, player, [], "")
-    if player == 0:
-        moves.sort(key=lambda move: -move[2])
-    else:
-        moves.sort(key=lambda move: -move[2])
+    moves.sort(key=lambda move: -move[2])
     return moves
 
 
 def alphaBeta(house, depthMax, player):
-    alpha = -999
-    beta = 999
-    result = maxAlphaBeta(house, depthMax, 0, alpha, beta, player)
-    # dump(house,0,"")
-    return result
+    return maxAlphaBeta(house, depthMax, 0, -999, 999, player)
 
 
 def maxAlphaBeta(house, depthMax, depth, alpha, beta, player):  # player = 0 or 1
-    # dump(house, depth, "")
+    global nodes
+    nodes += 1
     opponent = 1 - player
     myAcc = [6,13][player]
     if not HasSuccessors(house):
@@ -60,7 +56,6 @@ def maxAlphaBeta(house, depthMax, depth, alpha, beta, player):  # player = 0 or 
         top = None
         for [tempHouse,act,value] in moves:
             tempValue = minAlphaBeta(tempHouse, depthMax, depth+1, alpha, beta, opponent)
-            #dump(tempHouse,depth,act)
             if alpha < tempValue:
                 alpha = tempValue
                 top = [tempHouse,act,value]
@@ -70,6 +65,8 @@ def maxAlphaBeta(house, depthMax, depth, alpha, beta, player):  # player = 0 or 
 
 
 def minAlphaBeta(house, depthMax, depth, alpha, beta, player): # 0 or 1
+    global nodes
+    nodes += 1
     opponent = 1 - player
     myAcc = [6,13][player]
     if not HasSuccessors(house):
@@ -81,7 +78,6 @@ def minAlphaBeta(house, depthMax, depth, alpha, beta, player): # 0 or 1
         moves = getMoves(house, player)
         for [tempHouse,act,value] in moves:
             tempValue = maxAlphaBeta(tempHouse, depthMax, depth + 1, alpha, beta, opponent)
-            #dump(tempHouse,depth,act)
             if beta > tempValue:
                 beta = tempValue
             if alpha >= beta:
@@ -128,7 +124,8 @@ start = time.time_ns()
 #print('\nBEST CHOICE:', alphaBeta([0,5,4,5,1,0,28,0,1,1,3,0,1,23], 16, 1))  # 0=computer 1=human
 #print('\nBEST CHOICE:', alphaBeta([0,0,1,7,0,0,35,0,0,2,3,0,0,24], 20, 1))  # 0=computer 1=human
 
-print('BEST CHOICE:', alphaBeta([3, 3, 3, 3, 2, 1, 0, 3, 3, 3, 3, 2, 1, 0], 8, 0))  # 0=computer 1=human
+#print('BEST CHOICE:', alphaBeta([3, 3, 3, 3, 2, 1, 0, 3, 3, 3, 3, 2, 1, 0], 8, 0))  # 0=computer 1=human
+#print('BEST CHOICE:', alphaBeta([6,5,4,3, 2, 1, 0, 3, 6,5,4, 3, 2, 1, 0], 2, 0))  # 0=computer 1=human
 
 # Level 1 (118-kalaha) Resultat: 41-7 Styrka 6
 #print('\nBEST CHOICE:', alphaBeta([4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4, 0], 6, 1))  # 0=computer 1=human
@@ -171,4 +168,32 @@ print('BEST CHOICE:', alphaBeta([3, 3, 3, 3, 2, 1, 0, 3, 3, 3, 3, 2, 1, 0], 8, 0
 #print('\nBEST CHOICE:', alphaBeta([0,5,3,1,9,9,3,2,0,4,2,2,1,7], 2, 1))  # 0=computer 1=human
 #print('\nBEST CHOICE:', alphaBeta([0,5,0,1,10,10,3,0,1,0,0,0,0,18], 2, 1))  # 0=computer 1=human
 
-print((time.time_ns()-start)/10**6)
+#print((time.time_ns()-start)/10**6)
+
+
+house= [4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4, 0]
+#house = [6, 5, 4, 3, 2, 1, 0, 6, 5, 4, 3, 2, 1, 0]
+player = 0
+while True:
+    dump(house)
+    if player == 0:
+        nodes = 0
+        [house,actions,value] = alphaBeta(house,8,player)
+        print('Computer:',actions,f'({value}) {nodes}')
+        dump(house)
+        player = 1 - player
+
+    while True:
+        letter = input('You: ')
+        i = LITTERA.index(letter)
+        if house[i] > 0: break
+
+    while Relocation(house,i):
+        dump(house)
+        if not HasSuccessors(house):
+            FinalScoring(house)
+            break
+        else:
+            letter = input('You: ')
+            i = LITTERA.index(letter)
+    player = 1 - player
