@@ -1,33 +1,30 @@
-import os, sys, io
-import M5
-from M5 import *
+from M5 import Widgets,begin,Touch,update
 import time
 
 label1 = None
-value = 17
+value = 19
 buttons = []
 
 class Button:
-  def __init__(self, title, x, y, w, h, c, fc):
+  def __init__(self, title, x):
     self.title = title
     self.x = x
-    self.y = y
-    self.w = w
-    self.h = h
+    self.y = 200
+    self.w = 100
+    self.h = 35
     self.tx = -1
     self.ty = -1
-    self.rect = Widgets.Rectangle(x, y, w, h, c, fc)
-    self.label = Widgets.Label(title, x+45, y+10, 1.0, 0xffffff, fc, Widgets.FONTS.DejaVu18)
+    self.rect = Widgets.Rectangle(self.x, self.y, self.w, self.h) #, c, fc)
+    self.label = Widgets.Label(title, x+45, self.y+10, 1.0, 0xffffff, 0x000000, Widgets.FONTS.DejaVu18)
 
   def update(self):
-    if M5.Touch.getCount() > 0:
-      tx = M5.Touch.getX()
-      ty = M5.Touch.getY()
+    if Touch.getCount() > 0:
+      tx = Touch.getX()
+      ty = Touch.getY()
       if tx != self.tx or ty != self.ty:
         self.tx = tx - 20
         self.ty = ty
-        if self.x <= tx <= self.x + self.w and self.y <= ty <= self.y + self.h:
-          if callable(self.click): self.click()
+        if 0 <= tx-self.x <= self.w and 0 <= ty-self.y <= self.h: self.click()
     
   def click(self):
     global value
@@ -37,21 +34,15 @@ class Button:
     label1.setText(str(value))
     time.sleep_ms(250)
 
-def setup():
-  global label1
-  M5.begin()
-  Widgets.fillScreen(0x222222)
-  
-  label1 = Widgets.Label(str(value), 150, 80, 1.0, 0xffffff, 0x222222, Widgets.FONTS.DejaVu18)
-  buttons.append(Button('+2',  5, 200, 100, 35, 0xff0000, 0x880000))
-  buttons.append(Button('*2',110, 200, 100, 35, 0x00ff00, 0x008800))
-  buttons.append(Button('/2',215, 200, 100, 35, 0x0000ff, 0x000088))
+begin()
+Widgets.fillScreen(0x222222)
 
-def loop():
-  M5.update()
+label1 = Widgets.Label(str(value), 150, 80, 1.0, 0xffffff, 0x222222, Widgets.FONTS.DejaVu18)
+buttons.append(Button('+2',  5))
+buttons.append(Button('*2',110))
+buttons.append(Button('/2',215))
+
+while True:
+  update()
   for button in buttons:
     button.update()
-
-setup()
-while True:
-  loop()
