@@ -2,7 +2,7 @@ XN = 84 # size of a square
 YN = 84
 NY = 20 # number of squares vertically
 XO = 1.8 * XN             # X Offset
-YO = (2100 - NY * YN) / 2 # Y Offset
+YO = (2100 - NY * YN) / 2 - 12 # Y Offset
 
 range = _.range
 
@@ -25,7 +25,7 @@ class Unit
 			@drawMove @x , @y + j * YN + 0.5 * YN, NY * i + j + 1
 
 		for i in range 2
-			@drawTitle @x + XN * [3, 8][i], @y+0.75*YN, ['white','black'][i % 2]
+			@drawTitle @x + XN * [1, 6][i], @y+0.75*YN, ['white','black'][i % 2]
 
 		for i in range 3 # ver
 			strokeWeight [5, 3, 5][i]
@@ -39,8 +39,7 @@ class Unit
 
 		strokeWeight 3 
 		y = @y + 10 * YN
-		line @x-XN, y, @x + 11 * XN, y
-
+		line @x-0.6*XN, y, @x + 10.6 * XN, y
 
 	drawMove : (x,y,txt) ->
 		textSize 40
@@ -52,19 +51,11 @@ class Unit
 
 	drawTitle : (x,y,color) ->
 		fill color
-		rect x+1, y - YN, 5 * XN + 2, 0.5*YN
-
-		other = if color == 'black' then 'white' else 'black'
-		textSize 32
-		y = y - 0.1 * YN
-
-		fill other
-		färg = if color == 'black' then 'Svart' else 'Vit'
-		text färg, x, y - 0.85 * YN
+		circle x+1, y - 1.1*YN, 30
 
 textCol = (txt,x,y,w,h,count) ->
 	fill 'black'
-	text txt, x, y - 0.3 * YN
+	text txt, x, y + 1.4 * YN
 	noFill()
 	rect x, y + 0.5 * YN, w,h,5
 	if count == 2 then rect x, y + 1.6 * YN, w, h, 5
@@ -72,27 +63,31 @@ textCol = (txt,x,y,w,h,count) ->
 drawForm = ->
 
 	noFill()
-	circle XO +  0 * XN, YO-1.2*YN, 0.4*XN
+	circle XO +  1 * XN, YO-1.2*YN, 30
 	fill 'black'
-	circle XO + 16.5 * XN, YO-1.2*YN, 0.4*XN
+	circle XO + 17 * XN, YO-1.2*YN, 30
 
 	for j in range 2
 		for i in range 4
 			t = "Namn Klubb Rating Poäng".split(" ")[i]
-			x = XO + XN * [3.75, 9.2, 12.65, 15.1][i]
+			x = XO + XN * [5, 10.5, 13.5, 15.5][i]
 			y = YO - 1.75*YN
-			w = XN * [6.5, 4, 2.5, 1.8][i]
+			w = XN * [7, 4, 2, 2][i]
 			h = YN
-			textCol t, x+j*16.5*XN, y, w, h, 1
+			textCol t, x+j*16*XN, y, w, h, 1
 
 	for i in range 6
 		t = 'Tävling Plats Klass Rond Bord Datum'.split(" ")[i]
 
-		x = XO + XN * [2.5,7.7,10.7,12.4,14.1,17.6][i]
-		y = YO + YN * 0.7 + NY*YN
-		w = XN * [6, 4, 1.5, 1.5, 1.5, 5][i]
+		x = XO + XN * [2.5,7.5,10.5,12.5,14.5,18][i]
+		y = YO + YN + NY*YN - 0.5*YN
+		w = XN * [6, 4, 2, 2, 2, 5][i]
 		h = YN
 		textCol t, x, y, w, h, 1
+
+	fill 'black'
+	textSize 20
+	text 'Christer Nilsson 070 - 749 6800', 2740, 1900
 
 
 window.mouseClicked = -> saveCanvas 'Protocol_5L','jpg'
