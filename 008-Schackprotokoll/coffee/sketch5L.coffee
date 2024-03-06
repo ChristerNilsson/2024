@@ -24,12 +24,17 @@ class Unit
 		for j in range NY
 			@drawMove @x , @y + j * YN + 0.5 * YN, NY * i + j + 1
 
-		for i in range 2
-			@drawTitle @x + XN * [1, 6][i], @y+0.75*YN, ['white','black'][i % 2]
+		# for i in range 2
+		# 	@drawTitle @x + XN * [1, 6][i], @y+0.75*YN, ['white','black'][i % 2]
+
+		# for i in range 3 # ver
+		# 	strokeWeight [5, 3, 5][i]
+		# 	x = @x + [-0.5, 5.5, 10.5][i] * XN
+		# 	line x, @y, x , @y + NY * YN
 
 		for i in range 3 # ver
-			strokeWeight [5, 3, 5][i]
-			x = @x + [-0.5, 5.5, 10.5][i] * XN
+			strokeWeight [5, 3, 5, 3, 5, 3, 5][i]
+			x = @x + [-0.5,5.5,10.5][i] * XN
 			line x, @y, x , @y + NY * YN
 
 		for i in range 3 # hor
@@ -37,16 +42,17 @@ class Unit
 			y = @y + [0, 10, 20][i] * YN
 			line @x-0.5*XN, y, @x + 10.5 * XN, y
 
-		strokeWeight 3 
-		y = @y + 10 * YN
-		line @x-0.6*XN, y, @x + 10.6 * XN, y
+		# strokeWeight 3 
+		# y = @y + 10 * YN
+		# line @x-0.6*XN, y, @x + 10.6 * XN, y
 
 	drawMove : (x,y,txt) ->
 		textSize 40
 		fill 'black'
 		text txt, x, y + 0.1 * YN
 		noFill()
-		for i in range 11	
+		for i in range 11
+			if i>5 then fill 230 else noFill()
 			rect x + i * XN, y, XN, YN
 
 	drawTitle : (x,y,color) ->
