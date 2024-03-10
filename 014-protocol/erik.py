@@ -1,27 +1,26 @@
-#filename = 'MNIST/emnist-mnist-test'
-filename = 'data/e2e4/digits'
+# extraherar abcdefgh från EMNIST byclass.
+# extraherar 0123456789 från EMNIST byclass.
 
-with open(filename + '.csv') as f:
-	lines = f.readlines()
+def extract(filename):
+	with open(filename + '.csv') as f: lines = f.readlines()
 
-output = []
-for line in lines:
-	line = line.split(',')
-	cells = [item for item in line]
-	facit = cells[0]
-	cells = cells[1:]
-	matrix = [[cells[i*28+j] for i in range(28)] for j in range(28)]
+	letters = []
+	digits = []
+	for line in lines:
+		line = line.split(',')
+		cells = [item for item in line]
+		facit = int(cells[0])
+		cells = cells[1:]
+		if facit in range(36,44):
+			letters.append(str(facit-36) + "," + ",".join(cells))
+		if facit in range(10):
+			digits.append(str(facit-0) + "," + ",".join(cells))
 
-	for i in range(28):
-		for j in range(28):
-			if i < j: continue
-			matrix[i][j],matrix[j][i] = matrix[j][i],matrix[i][j]
+	with open(filename + '-abcdefgh.csv',   'w') as g: g.writelines(letters)
+	with open(filename + '-0123456789.csv', 'w') as g: g.writelines(digits)
 
-	output.append(facit + "," + ",".join([matrix[j][i] for i in range(28) for j in range(28)]))
+	print(filename,len(lines),'=>',len(letters),'letters')
+	print(filename,len(lines),'=>',len(digits), 'digits')
 
-with open(filename + '-transposed.csv', 'w') as g:
-	g.writelines(output)
-
-
-
-
+extract('MNIST/emnist-byclass-test')
+extract('MNIST/emnist-byclass-train')
