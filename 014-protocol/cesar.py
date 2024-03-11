@@ -40,6 +40,9 @@ DIGITS5  = 'MNIST/emnist-byclass-train-0123456789-shaygu_5.h5'
 
 LETTERS10 = 'MNIST/emnist-byclass-train-abcdefgh-shaygu_10.h5'
 
+LETTERS20 = 'MNIST/emnist-byclass-train-abcdefgh-shaygu_20.h5'
+DIGITS20 = 'MNIST/emnist-mnist-train-shaygu_20.h5'
+
 # EPOCHS == 1
 #predictor('data/e2e4/letters.csv',LETTERS1,'abcdefgh') # 0.9610
 #predictor('data/e2e4/digits.csv', DIGITS1) # acc = 0.9935
@@ -56,7 +59,14 @@ LETTERS10 = 'MNIST/emnist-byclass-train-abcdefgh-shaygu_10.h5'
 
 # EPOCHS == 10
 #predictor('data/e2e4/letters.csv',LETTERS10,'abcdefgh') # 1.0000
-#predictor('MNIST/emnist-byclass-test-0123456789.csv',DIGITS10) #
 #predictor('MNIST/emnist-byclass-test-abcdefgh.csv',LETTERS10) # 0.9905
+#predictor('MNIST/emnist-byclass-test-0123456789.csv',DIGITS10) #
 #predictor('data/e2e4/digits.csv',DIGITS10) #
 #predictor('data/5254/digits.csv',DIGITS10) #
+
+# EPOCHS == 20
+predictor('data/e2e4/letters.csv',LETTERS20,'abcdefgh') # 0.9870
+#predictor('MNIST/emnist-byclass-test-abcdefgh.csv',LETTERS20,"abcdefgh") # 0.9911
+#predictor('MNIST/emnist-byclass-test-0123456789.csv',DIGITS20) # 0.9967
+#predictor('data/e2e4/digits.csv',DIGITS20) # 1.0000
+#predictor('data/5254/digits.csv',DIGITS20) # 0.9979

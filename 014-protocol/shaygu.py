@@ -8,9 +8,9 @@
 # abcdefgh.csv ska bara innehålla dessa åtta bokstäver.
 # 0123456789.csv ska bara innehålla dessa tio siffror.
 
-#KATEGORI = 'MNIST/emnist-byclass-train-abcdefgh'
+KATEGORI = 'MNIST/emnist-byclass-train-abcdefgh'
 #KATEGORI = 'MNIST/emnist-byclass-train-0123456789' # 45 min
-KATEGORI = 'MNIST/emnist-mnist-train'
+#KATEGORI = 'MNIST/emnist-mnist-train'
 
 EPOCHS = 20
 
@@ -32,35 +32,19 @@ from tensorflow.keras.callbacks import ReduceLROnPlateau, ModelCheckpoint
 from tensorflow.keras.optimizers.legacy import Adam
 from tensorflow.keras.optimizers import RMSprop
 
-# Seed value
-# Apparently you may use different seed values at each stage
 seed_value = 32
-
-# 1. Set the `PYTHONHASHSEED` environment variable at a fixed value
 os.environ['PYTHONHASHSEED'] = str(seed_value)
-
-# 2. Set the `python` built-in pseudo-random generator at a fixed value
 random.seed(seed_value)
-
-# 3. Set the `numpy` pseudo-random generator at a fixed value
 np.random.seed(seed_value)
-
-# 4. Set the `tensorflow` pseudo-random generator at a fixed value
 tf.random.set_seed(seed_value)
 
-# 5. Configure a new global `tensorflow` session
 session_conf = tf.compat.v1.ConfigProto(intra_op_parallelism_threads=1, inter_op_parallelism_threads=1)
 sess = tf.compat.v1.Session(graph=tf.compat.v1.get_default_graph(), config=session_conf)
 K.set_session(sess)
 
-# 2 ###
-
-# 3 ###
-
-# Import Data
 train = pd.read_csv(KATEGORI + ".csv", header=None)
 # test = pd.read_csv(KATEGORI + ".csv", header=None)
-# print("Train size:{}\nTest size:{}".format(train.shape, test.shape))
+print("Train size:", train.shape)
 
 x_train = train.iloc[:, 1:].values
 y_train = train.iloc[:, 0].values
