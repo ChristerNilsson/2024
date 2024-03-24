@@ -1,11 +1,8 @@
-# https://syzygy-tables.info/
-# http://tablebase.sesse.net/syzygy/3-4-5/ (download)
-
 import random
 import time
 
 ALFABET = "0123456789abcdefghijklmnopqrstuvwxyz"
-DRAW = 0
+DRAW = '|'
 MATE = '1'
 
 def ass(a, b):
@@ -59,6 +56,8 @@ def getRandomPosition(n):
     ass(n % 2, 1)
     letter = ALFABET[n]
     indexes = [i for i in range(len(whiteData)) if whiteData[i] == letter]
+    for index in random.sample(indexes,10):
+        print(reverseIndex(index))
 
     i = random.choice(indexes)
     #i = 146745
@@ -162,7 +161,7 @@ ass(illegalSquaresWhite(26,27,44), [35, 43, 51, 36, 52, 37, 45, 53])
 ass(Position( 0, 8, 2).blackScore(), 'e')
 ass(Position( 0, 8,13).blackScore(), 'q')
 ass(Position( 0,16, 2).blackScore(), 'm')
-ass(Position( 0,17,10).blackScore(), '|')
+ass(Position( 0,17,10).blackScore(), DRAW)
 ass(Position( 1,54,38).blackScore(), 'w')
 ass(Position( 2, 8, 4).blackScore(), 'a')
 
@@ -177,22 +176,22 @@ ass(Position( 3,54,44).blackScore(), 'u')
 ass(Position( 5,39,56).blackScore(), 'q')
 ass(Position( 9,27, 7).blackScore(), 'i')
 ass(Position(10,33, 8).blackScore(), '8')
-ass(Position(13,17,10).blackScore(), '|')
+ass(Position(13,17,10).blackScore(), DRAW)
 ass(Position(13,17,10).whiteScore(), 'f')
 ass(Position(17,32, 2).blackScore(), 'o')
 ass(Position(24,54,37).blackScore(), 'u')
-ass(Position(29,17,10).blackScore(), '|')
+ass(Position(29,17,10).blackScore(), DRAW)
 ass(Position(36,17,46).blackScore(), 'g')
 ass(Position(42,53,13).blackScore(), 'q')
-ass(Position(42,53,60).blackScore(), '|')
-ass(Position(49,17,10).blackScore(), '|')
+ass(Position(42,53,60).blackScore(), DRAW)
+ass(Position(49,17,10).blackScore(), DRAW)
 ass(Position(49,17,46).blackScore(), 'q')
-ass(Position(60,17,10).blackScore(), '|')
+ass(Position(60,17,10).blackScore(), DRAW)
 
 ass(Position( 9,27, 7).whiteScore(), 'd')
 ass(Position( 3, 5,19).whiteScore(), 'n')
 
-position = getRandomPosition(1) # odd number of moves
+position = getRandomPosition(31) # odd number of moves
 
 def showWhiteMoves(moves): # Ka6 (e) Ra3 (f)
     result = []
@@ -284,10 +283,10 @@ def computerBoth():  # datorn gör första draget som vit
         move = blackMoves[-1]
         position.set(move[0], move[1], move[2])
 
-start = time.time_ns()
+# start = time.time_ns()
 
-computerBoth()
+#computerBoth()
 #computerWhite()
 #computerBlack()
 
-print((time.time_ns()-start)/10**6)
+# print((time.time_ns()-start)/10**6)

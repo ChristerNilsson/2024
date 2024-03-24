@@ -1,19 +1,6 @@
 import time
 import chess.syzygy
 
-# Detta program hämtar utvärderingar från syzygy-databasen
-#   (.csv-filen innehöll felaktigheter)
-#   Filerna måste finnas i katalogen syzygy.
-# Tillvägagångssätt (utförs både för vit och svart) :
-#   1. Fråga syzygy efter utvärdering
-#   2. Spara antal drag till filerna KRKw.txt och KRKb.txt
-#   Samma position kan förekomma i båda filerna.
-#     T ex är Ka1 Rc2 Kd1 remi i KRKb men 13 ply från matt i KRKw.
-# Tolkning
-#   White: Antal ply till matt (1 3 .. 31)
-#   Black: 0 = Remi 1 = Matt  2 4 .. 32 Antal ply till matt
-# Filstorlek: 256 Kb per fil. 64 * 64 * 64
-
 matrix = []
 
 def ass(a, b):
@@ -95,11 +82,8 @@ def makeFile(color):
                         details.append(f"{pretty(wk)} {pretty(wr)} {pretty(bk)} {score} {letter}")
                         antal[letter] = antal[letter] + 1 if letter in antal else 1
 
-    with open("KRK" + color + ".txt",'w') as f:
-        f.write("".join(res))
-
-    with open("KRK" + color + "_details.txt",'w') as f:
-        f.write("\n".join(details))
+    with open("KRK" + color + ".txt",'w') as f: f.write("".join(res))
+    with open("KRK" + color + "_details.txt",'w') as f: f.write("\n".join(details))
 
     print(antal)
 
