@@ -8,8 +8,8 @@ import io
 
 ENGINE = "C:\Program Files\stockfish\stockfish-windows-x86-64-avx2.exe"
 
-MULTIPV = 2  # förgreningsfaktor för motspelaren
-MS = 100  # ms
+MULTIPV = 5  # förgreningsfaktor för motspelaren
+MS = 200  # ms
 
 cLines = 0
 cNodes = 0
@@ -40,7 +40,7 @@ def run(color,levels,pgn):
 		for i in range(levels):
 			if move_number % 2 == 0:
 				letter = 'WB'[i % 2]
-				s += f"{(move_number + i) // 2}{letter}".ljust(6, " ")
+				s += f"{(move_number + i + 2) // 2}{letter}".ljust(6, " ")
 			else:
 				letter = 'BW'[i % 2]
 				s += f"{(move_number + i + 2) // 2}{letter}".ljust(6, " ")
@@ -113,20 +113,36 @@ def score(info):
 engine = chess.engine.SimpleEngine.popen_uci(ENGINE)
 engine.configure({"Skill Level":20}) # Verkar inte ha någon effekt, 0 ska ge non randomness
 
-run("B", 8, "1.")
+#run("B", 10, "1.") sabbad!
+
+# run("B", 8, "1. d4 c5") # Benoni
+# run("B", 8, "1. e4 d5") # Skandinaviskt
+# run("B", 8, "1. e4 c5") # Sicilianskt
+# run("B", 8, "1. e4 c6") #
+# run("B", 8, "1. d4 Nf6 2. c4 e6 3. Nc3 Bb4") # Nimzo-indian
 
 # run("B", 9, "1. b3") # Larsen
 # run("B", 9, "1. b4")
 # run("B", 9, "1. c4") # Engelskt
-# run("B", 8, "1. d4 c5") # Benoni
+# run("B", 9, "1. d4")
+# run("B", 9, "1. d4 d5 2. c4") # damgambit
 # run("B", 9, "1. e3")
 # run("B", 9, "1. e4")
-# run("B", 8, "1. e4 d5") # Skandinaviskt
+# run("B", 9, "1. e4 c5 2. Nc3 Nc6 3. g3") # Sicilianskt
 # run("B", 9, "1. h4")
+# run("B", 9, "1. Nf3")
 
-#run("W", 9, "1. e4 c5") # Sicilianskt
-# run("W", 8, "1. e4 e5 2. Nf3 Nc6 3. Bc4")
+# run("W", 8, "1. e4 e5 2. Nf3 Nc6 3. Bc4") # Preussiskt
 # run("W", 8, "1. e4 e5 2. Nf3 Nc6 3. Bb5") # Spanskt
-# run("W", 8, "1. e4 e5 2. Nf3 Nf6") # Ryskt
+run("W", 8, "1. e4 c5 2. Nc3 Nc6 3. f4") # Grand Prix
+
+# run("W", 9, "1. e4 c5") # Sicilianskt
+# run("W", 9, "1. e4 d6")
+# run("W", 9, "1. e4 g6")
+# run("W", 9, "1. e4 e5 2. Nf3 Nf6") # Ryskt
+# run("W", 9, "1. e4 e5 2. Nf3 Qf6")
+# run("W", 9, "1. e4 e5 2. Nf3 d6")
+# run("W", 9, "1. e4 e6") # Franskt
+# run("W", 9, "1. e4 c6") # Caro-can
 
 engine.quit()
