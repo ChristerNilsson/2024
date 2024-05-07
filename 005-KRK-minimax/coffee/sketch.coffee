@@ -1,7 +1,7 @@
 SIZE = 40
 YOFFSET = 40
 
-BASE = 'KQk' # Hämtas från URL.
+BASE = 'Q' # Hämtas från URL. 
 
 board = null
 chess = new Chess()
@@ -15,6 +15,7 @@ title = null
 pgn = null
 
 images = {}
+
 clickedFrom = -1
 clickedTo = -1
 
@@ -28,23 +29,25 @@ chess2board = ->
         board.squares[index].piece = if sq then sq.color + sq.type.toUpperCase() else ''
 
 setStatus = ->
-    textSize 20
+    textSize 18
     fill 'black'
-    text "Mate in " + level, width/2,25
-    s = if moveNumber == 0 then "Endbase Exerciser by Christer" else extractLastMove chess.pgn()
+    title = if BASE=='Qr' then "Win in " else "Mate in "
+    text title+level, width/2,25
+    s = if moveNumber == 0 then "Endbase Exerciser by Christer 2024" else extractLastMove chess.pgn()
     text s,width/2,380
 
 getProblem = (delta) ->
+    KkBASE = "Kk" + BASE
     level += delta
     moveNumber = 0
     if level < 1 then level = 1
     if not level in problemBase then level -= 1
     problems = problemBase[level].split ' '
     problem = _.sample problems
-    indexes = (problem.slice 2*i,2*i+2 for i in range BASE.length)
+    indexes = (problem.slice 2*i,2*i+2 for i in range KkBASE.length)
     chess.clear()
-    for i in range BASE.length
-        letter = BASE[i]
+    for i in range KkBASE.length
+        letter = KkBASE[i]
         color = if letter in "KQRBNP" then 'w' else 'b'
         chess.put {type:letter.toLowerCase(), color:color}, indexes[i]
         chess2board()
@@ -72,12 +75,12 @@ setup = ->
     pgn.position 25, 13*SIZE
     getProblem 0
 
-    buttons.push new Button 'KQk',width/2,0,100,40
-    buttons.push new Button 'KRk',width/2,50,100,40
-    buttons.push new Button 'KQkr',width/2,100,100,40
-    buttons.push new Button 'KBBk',width/2,150,100,40
-    buttons.push new Button 'KBNk',width/2,200,100,40
-    buttons.push new Button 'KNNNk',width/2,250,100,40
+    buttons.push new Button 'Q',width/2,0,100,40
+    buttons.push new Button 'R',width/2,50,100,40
+    buttons.push new Button 'Qr',width/2,100,100,40
+    buttons.push new Button 'BB',width/2,150,100,40
+    buttons.push new Button 'BN',width/2,200,100,40
+    buttons.push new Button 'NNN',width/2,250,100,40
 
 class Button
     constructor : (@piece,@x,@y,@w,@h) ->
@@ -85,7 +88,7 @@ class Button
         for letter in @piece
             color = if letter in "KQRBNP" then 'w' else 'b'
             piece = letter.toUpperCase()
-            if piece != "K" then @images.push images[color + piece]
+            @images.push images[color + piece]
         @XOFFSET = -20 * @images.length
     draw : ->
         for i in range @images.length
@@ -102,10 +105,14 @@ class Square
         @x = @i * SIZE
         @y = (7-@j) * SIZE
         @name = "abcdefgh"[@i] + "12345678"[@j]
+        # @moving = false
     draw : ->
         fill if (@i+@j) % 2 == 0 then 'gray' else 'yellow'
         rect @x,YOFFSET+@y,SIZE,SIZE
-        if @piece != ''  then image images[@piece],@x,YOFFSET+@y,SIZE,SIZE
+
+        if clickedFrom != @index #and clickedTo == -1
+            if @piece != ''  then image images[@piece],@x,YOFFSET+@y,SIZE,SIZE
+
     inside: (x,y) -> @x < x < @x+SIZE and @y < y-YOFFSET < @y+SIZE
 
 class Board
@@ -118,17 +125,20 @@ class Board
             square.draw()
     mousePressed : ->
         for square in board.squares
-            if square.inside mouseX,mouseY then clickedFrom = square.index
+            if square.inside mouseX,mouseY
+                clickedFrom = square.index
+                echo 'moving',clickedFrom
     mouseReleased : ->
-        if clickedFrom == -1 then return
-        for square in board.squares
-            if square.inside mouseX,mouseY then clickedTo = square.index
+        # if clickedFrom == -1 then return
         moves = (move.from + move.to for move in chess.moves { verbose: true })
         if moves.length == 0
             getProblem 0
             return
-        a = board.squares[clickedFrom].name
-        b = board.squares[clickedTo].name
+        for square in @squares
+            if square.inside mouseX,mouseY
+                clickedTo = square.index
+                a = @squares[clickedFrom].name
+                b = square.name
         if a + b in moves
             chess.move { from: a, to: b }
             moveNumber += 1
@@ -141,6 +151,16 @@ draw = ->
         button.draw()
     board.draw()
     setStatus()
+
+    if clickedFrom != -1
+        square = board.squares[clickedFrom]
+        #for square in board.squares
+        # echo board.squares[clickedFrom]
+        echo square.piece
+        image images[square.piece], mouseX-SIZE/2, mouseY-SIZE/2, SIZE,SIZE
+#else
+#    if @piece != ''  then image images[@piece],@x,YOFFSET+@y,SIZE,SIZE
+
 
 mousePressed = -> 
     for button in buttons
