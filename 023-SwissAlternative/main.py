@@ -1,19 +1,6 @@
-import itertools
-from copy import deepcopy
 import time
 
 UTSKRIFT = False
-
-# Denna swisslottning är inte identisk med FIDE:s.
-
-# Metod:
-# Sortera spelarna fallande på poäng och rating.
-# Gruppera på poäng.
-# För varje grupp:
-#   Hämta eventuell sinker från föregående grupp.
-#   Halvera gruppen. Vid udda antal blir den sista en sinker till nästa grupp.
-#   Para ihop de två halvgrupperna typ blixtlås.
-# Låt vanlig backtrackande Monrad hantera resten.
 
 class Player:
 	def __init__(self,id,name,rating):
@@ -57,11 +44,8 @@ def lotta(players):
 	for score in keys:
 		group = groups[score]
 		if len(sinker) == 1:
-			p0 = sinker.pop()
-			p1 = group.pop(0)
-			result.append(p0)
-			result.append(p1)
-
+			result.append(sinker.pop())
+			result.append(group.pop(0))
 		n = len(group)
 		if n % 2 == 1:
 			sinker.append(group.pop())
@@ -69,10 +53,8 @@ def lotta(players):
 		g0 = group[0:n//2]
 		g1 = group[n//2:n]
 		for i in range(n//2):
-			p0 = g0[i]
-			p1 = g1[i]
-			result.append(p0)
-			result.append(p1)
+			result.append(g0[i])
+			result.append(g1[i])
 	#result.sort(key=lambda p: p.id)
 	if UTSKRIFT:
 		for p in result:
@@ -80,11 +62,11 @@ def lotta(players):
 		print("")
 	return result
 
-def ok(p0, p1): return p0.id not in p1.opposition and abs(p0.bal + p1.bal) <= 1
+def ok(p0, p1): return p0.id not in p1.opposition and abs(p0.bal + p1.bal) <= 1 # eller 2
 def other(col): return 'w' if col == 'b' else 'b'
 def balans(col): return 1 if col == 'w' else -1
 
-def flip(p0,p1):
+def flip(p0,p1): # p0 byter färg, p0 anpassar sig
 	col0 = p0.colors[-1]
 	col1 = col0
 	col0 = other(col0)
@@ -99,9 +81,9 @@ def assignColors(p0,p1):
 		col0 = other(col1) # "bw"[1 - p0.id % 2]
 		p0.colors += col0
 		p1.colors += col1
-		bal = 1 if col0 == 'w' else -1
-		p0.bal += bal
-		p1.bal -= bal
+		# bal = 1 if col0 == 'w' else -1
+		p0.bal += balans(col0)
+		p1.bal += balans(col1)
 	else:
 		bal = p0.bal + p1.bal
 		if bal == 0:
@@ -111,8 +93,6 @@ def assignColors(p0,p1):
 				flip(p0,p1)
 			else:
 				flip(p1,p0)
-		else:
-			print('TODO')
 
 def metBefore(a,b): return b.id in a.opp
 
@@ -143,26 +123,12 @@ def pair(persons, pairing=[]):
 
 def updateResults(p0,p1):
 	if abs(p0.rating - p1.rating) <= 25: # remi
-		p0.score += 1
-		p1.score += 1
+		p0.score += 1/2
+		p1.score += 1/2
 	elif p0.rating > p1.rating: # vinst
-		p0.score += 2
+		p0.score += 2/2
 	elif p1.rating > p0.rating: # vinst
-		p1.score += 2
-
-# def updateResultsRapid(p0, p1):
-# 	remis = [[12,32],[11,21],[16,35]] #,[14,34]]
-# 	losers = [[10,12],[19,29]]
-# 	if [p0.id,p1.id] in remis or [p1.id,p0.id] in remis:
-# 		p0.score += 1
-# 		p1.score += 1
-# 	elif [p0.id, p1.id] in losers or [p1.id, p0.id] in losers:
-# 		if p0.ratings < p1.ratings: p0.score += 2
-# 		if p1.ratings < p0.ratings: p1.score += 2
-# 	elif p0.rating > p1.rating:  # vinst
-# 		p0.score += 2
-# 	elif p1.rating > p0.rating:  # vinst
-# 		p1.score += 2
+		p1.score += 2/2
 
 start = time.time_ns()
 for rond in range(5):
@@ -171,7 +137,6 @@ for rond in range(5):
 	for i in range(0,len(players),2):
 		updateResults(players[i], players[i+1])
 	players.sort(key=lambda p: [-p.score, -p.rating])
-#players.sort(key=lambda p: p.id)
 print('cpu:',(time.time_ns() - start)/10**6)
 
 print("Resultat", len(players))
