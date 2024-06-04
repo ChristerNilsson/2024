@@ -30,7 +30,7 @@ class Player:
 	# 	return math.sqrt(res)
 
 players = []
-ratings = list(range(2000,1000,-20))
+ratings = list(range(1825,1475,-25))
 names = ratings
 N = len(ratings)
 print(N)
@@ -77,7 +77,7 @@ def lotta(players):
 		print("")
 	return result
 
-def ok(p0, p1): return p0.id != p1.id and p0.id not in p1.opp and abs(p0.bal + p1.bal) <= 2 # eller 2
+def ok(p0, p1): return p0.id != p1.id and p0.id not in p1.opp and abs(p0.bal + p1.bal) <= 1 # eller 2
 def other(col): return 'w' if col == 'b' else 'b'
 def balans(col): return 1 if col == 'w' else -1
 
@@ -142,16 +142,17 @@ def updateResults(p0,p1):
 		p1.res += '1'
 
 start = time.time_ns()
-for rond in range(10):
-	players = lotta(players)
+for rond in range(6):
+	# players = lotta(players)
 	players = pair(players)
 	for i in range(0,len(players),2):
 		updateResults(players[i], players[i+1])
 		players[i].calc()
 		players[i + 1].calc()
 	players.sort(key=lambda p: [-p.score, -p.rating])
-	# for player in players:
-	# 	print(player)
+	print('')
+	for player in players:
+	 	print(player)
 print('cpu:',(time.time_ns() - start)/10**6)
 
 print("Resultat", len(players))

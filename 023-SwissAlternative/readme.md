@@ -15,3 +15,4 @@ För varje grupp:
   Para ihop de två halvgrupperna typ blixtlås.
 Låt vanlig backtrackande Monrad hantera resten.
 ```
+java -jar javafo.jar klass1_5.trfx -p klass1_5.txt
