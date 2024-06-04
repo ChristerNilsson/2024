@@ -1,4 +1,5 @@
 import time
+import math
 
 UTSKRIFT = False
 
@@ -10,16 +11,29 @@ class Player:
 		self.score = 0
 		self.bal = 0
 		self.opp = []
-		self.colors = ""
+		self.col = ""
+		self.res = ""
 
 	def __str__(self):
-		return f"id={self.id} score={self.score} rating={self.rating} opp={self.opp} col={self.colors} bal={self.bal}"
+		return f"rating={self.rating} col={self.col} res={self.res} bal={self.bal} opp={self.opp} id={self.id} score={self.score/10}" # sameness={self.sameness()}"
+
+	def calc(self):
+		sp = 0
+		key = self.col[-1] + self.res[-1]
+		self.score += {'w1': 10-sp, 'b1': 10, 'w½': 5-sp, 'b½': 5+sp, 'w0': 0, 'b0': sp}[key]
+
+	# def sameness(self):
+	# 	res = 0
+	# 	for i in self.opp:
+	# 		diff = i - self.id
+	# 		res += diff*diff
+	# 	return math.sqrt(res)
 
 players = []
-ratings = list(range(1825,1475,-25))
-# ratings = [2245,2108,2004,1996,1985,1980,1979,1974,1973,1956,1954,1938,1934,1890,1889,1882,1851,1849,1849,1842,1838,1825,1803,1801,1798,1773,1754,1734,1693,1677,1663,1599,1585,1572,1539,1531,1472,1465,1400,1400] # rapid
+ratings = list(range(2000,1000,-20))
 names = ratings
 N = len(ratings)
+print(N)
 
 for i in range(len(ratings)):
 	players.append(Player(i+1, names[i], ratings[i]))
@@ -32,6 +46,7 @@ def gruppera(players):
 		key = player.score
 		if key not in hash: hash[key] = []
 		hash[key].append(player)
+	print(len(hash),list(hash.keys()))
 	return hash
 
 def lotta(players):
@@ -56,32 +71,31 @@ def lotta(players):
 			result.append(g0[i])
 			result.append(g1[i])
 	#result.sort(key=lambda p: p.id)
-	if UTSKRIFT:
+	if True or UTSKRIFT:
 		for p in result:
 			print(p)
 		print("")
 	return result
 
-def ok(p0, p1): return p0.id not in p1.opposition and abs(p0.bal + p1.bal) <= 1 # eller 2
+def ok(p0, p1): return p0.id != p1.id and p0.id not in p1.opp and abs(p0.bal + p1.bal) <= 2 # eller 2
 def other(col): return 'w' if col == 'b' else 'b'
 def balans(col): return 1 if col == 'w' else -1
 
 def flip(p0,p1): # p0 byter färg, p0 anpassar sig
-	col0 = p0.colors[-1]
+	col0 = p0.col[-1]
 	col1 = col0
 	col0 = other(col0)
-	p0.colors += col0
-	p1.colors += col1
+	p0.col += col0
+	p1.col += col1
 	p0.bal += balans(col0)
 	p1.bal += balans(col1)
 
 def assignColors(p0,p1):
-	if len(p0.colors) == 0:
+	if len(p0.col) == 0:
 		col1 = "bw"[p0.id % 2]
-		col0 = other(col1) # "bw"[1 - p0.id % 2]
-		p0.colors += col0
-		p1.colors += col1
-		# bal = 1 if col0 == 'w' else -1
+		col0 = other(col1)
+		p0.col += col0
+		p1.col += col1
 		p0.bal += balans(col0)
 		p1.bal += balans(col1)
 	else:
@@ -93,8 +107,6 @@ def assignColors(p0,p1):
 				flip(p0,p1)
 			else:
 				flip(p1,p0)
-
-def metBefore(a,b): return b.id in a.opp
 
 def pair(persons, pairing=[]):
 	if len(pairing) == N:
@@ -108,12 +120,9 @@ def pair(persons, pairing=[]):
 	a = persons[0]
 	ids = [p.id for p in pairing]
 	for b in persons:
-		if a == b: continue # man kan inte möta sig själv
-		if metBefore(a,b): continue # a och b får ej ha mötts tidigare
 		if a.id in ids: continue
 		if b.id in ids: continue
-		bal = abs(a.bal + b.bal)
-		if bal >= 1: continue # Spelarna kan inte ha samma färg.
+		if not ok(a,b): continue
 
 		newPersons = [p for p in persons if p not in [a,b]]
 		newPairing = pairing + [a,b]
@@ -123,20 +132,26 @@ def pair(persons, pairing=[]):
 
 def updateResults(p0,p1):
 	if abs(p0.rating - p1.rating) <= 25: # remi
-		p0.score += 1/2
-		p1.score += 1/2
+		p0.res += '½'
+		p1.res += '½'
 	elif p0.rating > p1.rating: # vinst
-		p0.score += 2/2
+		p0.res += '1'
+		p1.res += '0'
 	elif p1.rating > p0.rating: # vinst
-		p1.score += 2/2
+		p0.res += '0'
+		p1.res += '1'
 
 start = time.time_ns()
-for rond in range(5):
+for rond in range(10):
 	players = lotta(players)
 	players = pair(players)
 	for i in range(0,len(players),2):
 		updateResults(players[i], players[i+1])
+		players[i].calc()
+		players[i + 1].calc()
 	players.sort(key=lambda p: [-p.score, -p.rating])
+	# for player in players:
+	# 	print(player)
 print('cpu:',(time.time_ns() - start)/10**6)
 
 print("Resultat", len(players))
