@@ -1,0 +1,336 @@
+Round 1
+1				Peder Gedda				1835		-		IM		Hampus Sörensen				2416		0 - 1
+2		IM		Michael Wiedenkeller				2413		-				Karam Masoudi				1833		1 - 0
+3				Christer Johansson				1828		-		FM		Joar Ölund				2366		0 - 1
+4		FM		Joar Östlund				2335		-				Anders Kallin				1827		0 - 1
+5				Morris Bergqvist				1818		-		FM		Vidar Grahn				2272		0 - 1
+6		FM		Leo Crevatin				2235		-				Martti Hamina				1803		1 - 0
+7				Björn Löfström				1800		-		FM		Daniel Vesterbaek Pedersen				2213		0 - 1
+8				Victor Muntean				2141		-				Nicholas Bychkov Zwahlen				1796		1 - 0
+9				Jonas Sandberg				1794		-				Filip Björkman				2113		0 - 1
+10				Pratyush Tripathi				2108		-				Rohan Gore				1793		1 - 0
+11				Kjell Jernselius				1787		-				Vidar Seiger				2109		0 - 1
+12				Erik Dingertz				2093		-				Radu Cernea				1783		1 - 0
+13				Mukhtar Jamshedi				1778		-				Michael Duke				2076		0 - 1
+14				Matija Sakic				2065		-				Neo Malmquist				1768		1 - 0
+15				Joacim Hultin				1763		-				Michael Mattsson				2048		0 - 1
+16				Lukas Willstedt				2046		-				Lars-Åke Pettersson				1761		1 - 0
+17				André J Lindebaum				1748		-				Lavinia Valcu				2039		0 - 1
+18				Oliver Nilsson				2035		-				Lars Eriksson				1734		1 - 0
+19				Hugo Hardwick				1733		-				Lennart Evertsson				2031		0 - 1
+20				Jussi Jakenberg				2022		-				Hugo Sundell				1728		1 - 0
+21				Simon Johansson				1726		-				Aryan Banerjee				2001		0 - 1
+22				Tim Nordenfur				1985		-				Jouni Kaunonen				1721		1 - 0
+23				Eddie Parteg				1709		-				Elias Kingsley				1977		0 - 1
+24				Per Isaksson				1954		-				Svante Nödtveidt				1691		1 - 0 w.o
+25				Sid Van Den Brink				1695		-		WIM		Cristine Rose Mariano				1944		0 - 1
+26				Lo Ljungros				1936		-				Anders Hillbur				1688		1 - 0
+27				Salar Banavi				1671		-				Herman Enholm				1923		½ - ½
+28				Carina Wickström				1907		-				Patrik Wiss				1650		1 - 0
+29				Anton Nordenfur				1641		-				Stefan Nyberg				1896		1 - 0
+30				Joel Åhfeldt				1897		-				Jens Ahlström				1624		1 - 0
+31				Hanns Ivar Uniyal				1622		-				Hans Rånby				1893		0 - 1
+32				Mikael Blom				1889		-				Christer Carmegren				1579		1 - 0
+33				Christer Nilsson				1575		-				Joar Berglund				1886		0 - 1
+34		CM		Mikael Helin				1885		-				Måns Nödtveidt				1524		1 - 0
+35				Karl-Oskar Rehnberg				1480		-				Olle Ålgars				1880		0 - 1
+36				Jesper Borin				1878		-				David Broman				1417		1 - 0
+37				Vida Radon				1406		-				Khaschuluu Sergelenbaatar				1871		0 - 1
+38				Roy Karlsson				1852		-				Ivar Arnshav						1 - 0
+39				Maxime De Lafonteyne						-				Fredrik Möllerström				1848		½ - ½
+40				Kenneth Fahlberg				1846		-				Kristoffer Schultz						1 - 0
+41				Sayak Raj Bardhan				1680		-				W.O						1 - 0 w.o
+Round 2
+1		IM		Hampus Sörensen				2416		-				Tim Nordenfur				1985		1 - 0
+2				Aryan Banerjee				2001		-		IM		Michael Wiedenkeller				2413		1 - 0
+3		FM		Joar Ölund				2366		-				Per Isaksson				1954		1 - 0
+4		FM		Vidar Grahn				2272		-				Lo Ljungros				1936		0 - 1
+5				Elias Kingsley				1977		-		FM		Leo Crevatin				2235		½ - ½
+6		FM		Daniel Vesterbaek Pedersen				2213		-				Carina Wickström				1907		1 - 0
+7		WIM		Cristine Rose Mariano				1944		-				Victor Muntean				2141		½ - ½
+8				Filip Björkman				2113		-				Joel Åhfeldt				1897		1 - 0
+9				Hans Rånby				1893		-				Pratyush Tripathi				2108		0 - 1
+10				Vidar Seiger				2109		-				Mikael Blom				1889		0 - 1
+11				Joar Berglund				1886		-				Erik Dingertz				2093		0 - 1
+12				Michael Duke				2076		-		CM		Mikael Helin				1885		1 - 0
+13				Olle Ålgars				1880		-				Matija Sakic				2065		1 - 0
+14				Michael Mattsson				2048		-				Jesper Borin				1878		1 - 0
+15				Khaschuluu Sergelenbaatar				1871		-				Lukas Willstedt				2046		1 - 0
+16				Lavinia Valcu				2039		-				Roy Karlsson				1852		1 - 0
+17				Anders Kallin				1827		-				Oliver Nilsson				2035		0 - 1
+18				Lennart Evertsson				2031		-				Kenneth Fahlberg				1846		1 - 0
+19				Sayak Raj Bardhan				1680		-				Jussi Jakenberg				2022		0 - 1
+20				Herman Enholm				1923		-				Anton Nordenfur				1641		0 - 1
+21				Fredrik Möllerström				1848		-				Salar Banavi				1671		0 - 1
+22				Stefan Nyberg				1896		-				Maxime De Lafonteyne						1 - 0
+23				Hugo Sundell				1728		-		FM		Joar Östlund				2335		0 - 1
+24				Jouni Kaunonen				1721		-				Peder Gedda				1835		0 - 1
+25				Karam Masoudi				1833		-				Hugo Hardwick				1733		0 - 1
+26				Svante Nödtveidt				1691		-				Christer Johansson				1828		1 - 0
+27				Anders Hillbur				1688		-				Morris Bergqvist				1818		0 - 1
+28				Martti Hamina				1803		-				Simon Johansson				1726		0 - 1
+29				Patrik Wiss				1650		-				Björn Löfström				1800		½ - ½
+30				Nicholas Bychkov Zwahlen				1796		-				Eddie Parteg				1709		0 - 1
+31				Jens Ahlström				1624		-				Jonas Sandberg				1794		1 - 0
+32				Rohan Gore				1793		-				Sid Van Den Brink				1695		1 - 0
+33				Christer Carmegren				1579		-				Kjell Jernselius				1787		0 - 1
+34				Radu Cernea				1783		-				Hanns Ivar Uniyal				1622		0 - 1
+35				Måns Nödtveidt				1524		-				Mukhtar Jamshedi				1778		0 - 1
+36				Neo Malmquist				1768		-				Christer Nilsson				1575		1 - 0
+37				David Broman				1417		-				Joacim Hultin				1763		0 - 1
+38				Lars-Åke Pettersson				1761		-				Karl-Oskar Rehnberg				1480		1 - 0
+39				Ivar Arnshav						-				André J Lindebaum				1748		0 - 1
+40				Lars Eriksson				1733		-				Vida Radon				1406		1 - 0
+41				Kristoffer Schultz						-				W.O						1 - 0 w.o
+Round 3
+1				Oliver Nilsson				2035		-		IM		Hampus Sörensen				2416		0 - 1
+2				Lennart Evertsson				2031		-		FM		Joar Ölund				2366		0 - 1
+3				Jussi Jakenberg				2022		-		FM		Daniel Vesterbaek Pedersen				2213		0 - 1
+4				Aryan Banerjee				2001		-				Filip Björkman				2113		0 - 1
+5				Pratyush Tripathi				2108		-				Olle Ålgars				1880		1 - 0
+6				Erik Dingertz				2093		-				Khaschuluu Sergelenbaatar				1871		1 - 0
+7				Lo Ljungros				1936		-				Michael Duke				2076		0 - 1
+8				Mikael Blom				1889		-				Michael Mattsson				2048		0 - 1
+9				Anton Nordenfur				1641		-				Lavinia Valcu				2039		0 - 1
+10		FM		Leo Crevatin				2235		-		WIM		Cristine Rose Mariano				1944		1 - 0
+11				Victor Muntean				2141		-				Elias Kingsley				1977		1 - 0
+12				Salar Banavi				1671		-		IM		Michael Wiedenkeller				2413		0 - 1
+13		FM		Joar Östlund				2335		-				Morris Bergqvist				1818		1 - 0
+14				Kjell Jernselius				1787		-		FM		Vidar Grahn				2272		0 - 1
+15				Mukhtar Jamshedi				1778		-				Vidar Seiger				2109		½ - ½
+16				Matija Sakic				2065		-				Anders Kallin				1827		1 - 0
+17				Lukas Willstedt				2046		-				Rohan Gore				1793		0 - 1
+18				Tim Nordenfur				1985		-				Neo Malmquist				1768		0 - 1
+19				Per Isaksson				1954		-				Joacim Hultin				1763		1 - 0
+20				Carina Wickström				1907		-				Lars-Åke Pettersson				1761		1 - 0
+21				André J Lindebaum				1748		-				Stefan Nyberg				1896		1 - 0
+22				Joel Åhfeldt				1897		-				Lars Eriksson				1734		0 - 1
+23				Hugo Hardwick				1733		-				Hans Rånby				1893		1 - 0
+24				Simon Johansson				1726		-				Joar Berglund				1886		0 - 1
+25		CM		Mikael Helin				1885		-				Eddie Parteg				1709		1 - 0
+26				Jesper Borin				1878		-				Svante Nödtveidt				1691		0 - 1
+27				Roy Karlsson				1852		-				Sayak Raj Bardhan				1680		1 - 0
+28				Kenneth Fahlberg				1846		-				Jens Ahlström				1624		1 - 0
+29				Kristoffer Schultz						-				Peder Gedda				1835		0 - 1
+30				Hanns Ivar Uniyal				1622		-				Fredrik Möllerström				1848		½ - ½
+31				Björn Löfström				1800		-				Herman Enholm				1923		0 - 1
+32				Maxime De Lafonteyne						-				Patrik Wiss				1650		1 - 0
+33				Sid Van Den Brink				1695		-				Karam Masoudi				1833		½ - ½
+34				Christer Johansson				1828		-				Anders Hillbur				1688		1 - 0
+35				Christer Carmegren				1579		-				Martti Hamina				1803		0 - 1
+36				Christer Nilsson				1575		-				Nicholas Bychkov Zwahlen				1796		0 - 1
+37				Jonas Sandberg				1794		-				Måns Nödtveidt				1524		1 - 0
+38				Karl-Oskar Rehnberg				1480		-				Radu Cernea				1783		1 - 0
+39				David Broman				1417		-				Hugo Sundell				1728		0 - 1
+40				Vida Radon				1406		-				Jouni Kaunonen				1721		0 - 1
+41				Ivar Arnshav						-				W.O						1 - 0 w.o
+Round 4
+1		IM		Hampus Sörensen				2416		-				Pratyush Tripathi				2108		1 - 0
+2		FM		Joar Ölund				2366		-				Erik Dingertz				2093		1 - 0
+3		FM		Daniel Vesterbaek Pedersen				2213		-				Michael Duke				2076		1 - 0
+4				Filip Björkman				2113		-				Michael Mattsson				2048		1 - 0
+5				Lavinia Valcu				2039		-		FM		Leo Crevatin				2235		0 - 1
+6		FM		Joar Östlund				2335		-				Victor Muntean				2141		0 - 1
+7		IM		Michael Wiedenkeller				2413		-		CM		Mikael Helin				1885		1 - 0
+8		FM		Vidar Grahn				2272		-				Roy Karlsson				1852		1 - 0
+9				Khaschuluu Sergelenbaatar				1871		-				Matija Sakic				2065		½ - ½
+10				Olle Ålgars				1880		-				Oliver Nilsson				2035		0 - 1
+11				Peder Gedda				1835		-				Lennart Evertsson				2031		0 - 1
+12				Kenneth Fahlberg				1846		-				Jussi Jakenberg				2022		½ - ½
+13				Rohan Gore				1793		-				Aryan Banerjee				2001		1 - 0
+14				Per Isaksson				1954		-				André J Lindebaum				1748		0 - 1
+15				Neo Malmquist				1768		-				Lo Ljungros				1936		0 - 1
+16				Lars Eriksson				1734		-				Carina Wickström				1907		0 - 1
+17				Svante Nödtveidt				1691		-				Mikael Blom				1889		1 - 0
+18				Joar Berglund				1886		-				Anton Nordenfur				1641		1 - 0
+19				Vidar Seiger				2109		-				Hugo Hardwick				1733		1 - 0
+20				Elias Kingsley				1977		-				Salar Banavi				1671		1 - 0
+21		WIM		Cristine Rose Mariano				1944		-				Hanns Ivar Uniyal				1622		½ - ½
+22				Herman Enholm				1923		-				Maxime De Lafonteyne						1 - 0
+23				Hans Rånby				1893		-				Mukhtar Jamshedi				1778		1 - 0
+24				Joacim Hultin				1763		-				Lukas Willstedt				2046		½ - ½
+25				Lars-Åke Pettersson				1761		-				Tim Nordenfur				1985		0 - 1
+26				Stefan Nyberg				1896		-				Kjell Jernselius				1787		1 - 0
+27				Hugo Sundell				1728		-				Joel Åhfeldt				1897		0 - 1
+28				Jouni Kaunonen				1721		-				Jesper Borin				1878		0 - 1
+29				Fredrik Möllerström				1848		-				Simon Johansson				1726		0 - 1
+30				Jens Ahlström				1624		-				Christer Johansson				1828		0 - 1
+31				Anders Kallin				1827		-				Sayak Raj Bardhan				1680		1 - 0
+32				Morris Bergqvist				1818		-				Karl-Oskar Rehnberg				1480		1 - 0
+33				Martti Hamina				1803		-				Ivar Arnshav						1 - 0
+34				Nicholas Bychkov Zwahlen				1796		-				Kristoffer Schultz						1 - 0
+35				Eddie Parteg				1709		-				Jonas Sandberg				1794		0 - 1
+36				Karam Masoudi				1833		-				Björn Löfström				1800		½ - ½
+37				Patrik Wiss				1650		-				Sid Van Den Brink				1695		½ - ½
+38				Radu Cernea				1783		-				Christer Nilsson				1575		1 - 0
+39				Anders Hillbur				1688		-				David Broman				1417		1 - 0
+40				Måns Nödtveidt				1524		-				Christer Carmegren				1579		0 - 1
+41				Vida Radon				1406		-				W.O						1 - 0 w.o
+Round 5
+1		FM		Daniel Vesterbaek Pedersen				2213		-		IM		Hampus Sörensen				2416		0 - 1
+2				Filip Björkman				2113		-		FM		Joar Ölund				2366		½ - ½
+3		FM		Leo Crevatin				2235		-				Victor Muntean				2141		1 - 0
+4				Oliver Nilsson				2035		-		IM		Michael Wiedenkeller				2413		0 - 1
+5				Lennart Evertsson				2031		-		FM		Vidar Grahn				2272		½ - ½
+6				Pratyush Tripathi				2108		-				Lo Ljungros				1936		1 - 0
+7				Erik Dingertz				2093		-				Rohan Gore				1793		½ - ½
+8				Michael Duke				2076		-				Joar Berglund				1886		1 - 0
+9				Michael Mattsson				2048		-				Svante Nödtveidt				1691		½ - ½
+10				Carina Wickström				1907		-				Lavinia Valcu				2039		1 - 0
+11				André J Lindebaum				1748		-				Elias Kingsley				1977		0 - 1
+12				Herman Enholm				1923		-				Vidar Seiger				2109		0 - 1
+13				Matija Sakic				2065		-				Kenneth Fahlberg				1846		1 - 0
+14				Jussi Jakenberg				2022		-				Khaschuluu Sergelenbaatar				1871		1 - 0
+15				Christer Johansson				1828		-		FM		Joar Östlund				2335		0 - 1
+16				Aryan Banerjee				2001		-				Peder Gedda				1835		1 - 0
+17				Tim Nordenfur				1985		-				Anders Kallin				1827		1 - 0
+18				Jonas Sandberg				1794		-				Per Isaksson				1954		½ - ½
+19				Hugo Hardwick				1733		-		WIM		Cristine Rose Mariano				1944		0 - 1
+20				Simon Johansson				1726		-				Stefan Nyberg				1896		0 - 1
+21				Joel Åhfeldt				1897		-				Morris Bergqvist				1818		0 - 1
+22				Anton Nordenfur				1641		-				Hans Rånby				1893		0 - 1
+23				Mikael Blom				1889		-				Martti Hamina				1803		0 - 1
+24		CM		Mikael Helin				1885		-				Nicholas Bychkov Zwahlen				1796		0 - 1
+25				Hanns Ivar Uniyal				1622		-				Olle Ålgars				1880		0 - 1
+26				Jesper Borin				1878		-				Neo Malmquist				1768		1 - 0
+27				Roy Karlsson				1852		-				Lars Eriksson				1734		½ - ½
+28				Lukas Willstedt				2046		-				Salar Banavi				1671		1 - 0
+29				Mukhtar Jamshedi				1778		-				Joacim Hultin				1763		1 - 0
+30				Maxime De Lafonteyne						-				Karam Masoudi				1833		1 - 0
+31				Anders Hillbur				1688		-				Fredrik Möllerström				1848		0 - 1
+32				Björn Löfström				1800		-				Jens Ahlström				1624		1 - 0
+33				Kjell Jernselius				1787		-				Patrik Wiss				1650		1 - 0
+34				Sayak Raj Bardhan				1680		-				Radu Cernea				1783		0 - 1
+35				Christer Carmegren				1579		-				Lars-Åke Pettersson				1761		0 - 1
+36				Karl-Oskar Rehnberg				1480		-				Hugo Sundell				1728		½ - ½
+37				Ivar Arnshav						-				Jouni Kaunonen				1721		1 - 0
+38				Kristoffer Schultz						-				Eddie Parteg				1709		0 - 1
+39				Sid Van Den Brink				1695		-				Vida Radon				1406		1 - 0
+40				Christer Nilsson				1575		-				Måns Nödtveidt				1524		½ - ½
+41				David Broman				1417		-				W.O						1 - 0 w.o
+Round 6
+1		IM		Hampus Sörensen				2416		-				Filip Björkman				2113		½ - ½
+2		FM		Joar Ölund				2366		-		FM		Leo Crevatin				2235		1 - 0
+3		IM		Michael Wiedenkeller				2413		-		FM		Daniel Vesterbaek Pedersen				2213		1 - 0
+4				Michael Duke				2076		-				Pratyush Tripathi				2108		½ - ½
+5		FM		Vidar Grahn				2272		-				Carina Wickström				1907		1 - 0
+6				Victor Muntean				2141		-				Lennart Evertsson				2031		1 - 0
+7				Vidar Seiger				2109		-				Svante Nödtveidt				1691		1 - 0
+8				Elias Kingsley				1977		-				Erik Dingertz				2093		½ - ½
+9				Rohan Gore				1793		-				Matija Sakic				2065		½ - ½
+10				Michael Mattsson				2048		-				Jussi Jakenberg				2022		½ - ½
+11				Hans Rånby				1893		-		FM		Joar Östlund				2335		0 - 1
+12				Lavinia Valcu				2039		-				Joar Berglund				1886		½ - ½
+13				Morris Bergqvist				1818		-				Oliver Nilsson				2035		0 - 1
+14				Olle Ålgars				1880		-				Aryan Banerjee				2001		1 - 0
+15				Martti Hamina				1803		-				Tim Nordenfur				1985		½ - ½
+16		WIM		Cristine Rose Mariano				1944		-				Jesper Borin				1878		1 - 0
+17				Lo Ljungros				1936		-				André J Lindebaum				1748		½ - ½
+18				Stefan Nyberg				1896		-				Nicholas Bychkov Zwahlen				1796		1 - 0
+19				Kenneth Fahlberg				1846		-				Lukas Willstedt				2046		½ - ½
+20				Per Isaksson				1954		-				Mukhtar Jamshedi				1778		1 - 0
+21				Lars Eriksson				1734		-				Herman Enholm				1923		0 - 1
+22				Khaschuluu Sergelenbaatar				1871		-				Jonas Sandberg				1794		1 - 0
+23				Maxime De Lafonteyne						-				Roy Karlsson				1852		1 - 0
+24				Radu Cernea				1783		-				Joel Åhfeldt				1897		0 - 1
+25				Neo Malmquist				1768		-				Mikael Blom				1889		0 - 1
+26				Lars-Åke Pettersson				1761		-		CM		Mikael Helin				1885		0 - 1
+27				Fredrik Möllerström				1848		-				Hugo Hardwick				1733		1 - 0
+28				Peder Gedda				1835		-				Simon Johansson				1726		1 - 0
+29				Eddie Parteg				1709		-				Christer Johansson				1828		0 - 1
+30				Anders Kallin				1827		-				Sid Van Den Brink				1695		1 - 0
+31				Anton Nordenfur				1641		-				Björn Löfström				1800		0 - 1
+32				Ivar Arnshav						-				Kjell Jernselius				1787		1 - 0
+33				Joacim Hultin				1763		-				Hanns Ivar Uniyal				1622		0 - 1
+34				Salar Banavi				1671		-				Karl-Oskar Rehnberg				1480		0 - 1
+35				Hugo Sundell				1728		-				Anders Hillbur				1688		1 - 0
+36				Karam Masoudi				1833		-				Christer Carmegren				1579		1 - 0
+37				Jouni Kaunonen				1721		-				David Broman				1417		1 - 0
+38				Vida Radon				1406		-				Sayak Raj Bardhan				1680		0 - 1
+39				Patrik Wiss				1650		-				Kristoffer Schultz						0 - 1
+40				Jens Ahlström				1624		-				Christer Nilsson				1575		½ - ½
+41				Måns Nödtveidt				1524		-				W.O						1 - 0 w.o
+Round 7
+1		FM		Joar Ölund				2366		-		IM		Hampus Sörensen				2416		½ - ½
+2				Filip Björkman				2113		-		IM		Michael Wiedenkeller				2413		0 - 1
+3				Pratyush Tripathi				2108		-		FM		Vidar Grahn				2272		0 - 1
+4		FM		Leo Crevatin				2235		-				Vidar Seiger				2109		1 - 0
+5				Victor Muntean				2141		-				Michael Duke				2076		0 - 1
+6		FM		Joar Östlund				2335		-				Elias Kingsley				1977		½ - ½
+7		FM		Daniel Vesterbaek Pedersen				2213		-		WIM		Cristine Rose Mariano				1944		1 - 0
+8				Erik Dingertz				2093		-				Olle Ålgars				1880		1 - 0
+9				Matija Sakic				2065		-				Stefan Nyberg				1896		1 - 0
+10				Carina Wickström				1907		-				Michael Mattsson				2048		0 - 1
+11				Oliver Nilsson				2035		-				Rohan Gore				1793		½ - ½
+12				Jussi Jakenberg				2022		-				Lavinia Valcu				2039		½ - ½
+13				Lennart Evertsson				2031		-				Martti Hamina				1803		1 - 0
+14				Tim Nordenfur				1985		-				Maxime De Lafonteyne						1 - 0
+15				Herman Enholm				1923		-				Per Isaksson				1954		1 - 0
+16				Joar Berglund				1886		-				Lo Ljungros				1936		½ - ½
+17				André J Lindebaum				1748		-				Khaschuluu Sergelenbaatar				1871		0 - 1
+18				Svante Nödtveidt				1691		-				Lukas Willstedt				2046		0 - 1
+19				Christer Johansson				1828		-				Aryan Banerjee				2001		0 - 1
+20				Joel Åhfeldt				1897		-				Peder Gedda				1835		1 - 0
+21				Björn Löfström				1800		-				Hans Rånby				1893		0 - 1
+22				Mikael Blom				1889		-				Anders Kallin				1827		0 - 1
+23		CM		Mikael Helin				1885		-				Morris Bergqvist				1818		0 - 1
+24				Jesper Borin				1878		-				Ivar Arnshav						1 - 0
+25				Nicholas Bychkov Zwahlen				1796		-				Fredrik Möllerström				1848		1 - 0
+26				Hanns Ivar Uniyal				1622		-				Kenneth Fahlberg				1846		0 - 1
+27				Roy Karlsson				1852		-				Hugo Sundell				1728		0 - 1
+28				Jonas Sandberg				1794		-				Lars Eriksson				1734		½ - ½
+29				Mukhtar Jamshedi				1778		-				Karl-Oskar Rehnberg				1480		0 - 1
+30				Simon Johansson				1726		-				Karam Masoudi				1833		½ - ½
+31				Kjell Jernselius				1787		-				Jouni Kaunonen				1721		1 - 0
+32				Sid Van Den Brink				1695		-				Radu Cernea				1783		0 - 1 w.o
+33				Sayak Raj Bardhan				1680		-				Neo Malmquist				1768		0 - 1
+34				Kristoffer Schultz						-				Lars-Åke Pettersson				1761		0 - 1
+35				Hugo Hardwick				1733		-				Eddie Parteg				1709		1 - 0
+36				Salar Banavi				1671		-				Anton Nordenfur				1641		0 - 1
+37				Måns Nödtveidt				1524		-				Jens Ahlström				1624		0 - 1
+38				Christer Carmegren				1579		-				Joacim Hultin				1763		½ - ½
+39				Anders Hillbur				1688		-				Vida Radon				1406		1 - 0
+40				David Broman				1417		-				Patrik Wiss				1650		0 - 1
+41				Christer Nilsson				1575		-				W.O						1 - 0 w.o
+Round 8
+1		IM		Michael Wiedenkeller				2413		-		FM		Joar Ölund				2366		½ - ½
+2		IM		Hampus Sörensen				2416		-		FM		Leo Crevatin				2235		½ - ½
+3		FM		Vidar Grahn				2272		-				Michael Duke				2076		1 - 0
+4				Michael Mattsson				2048		-		FM		Daniel Vesterbaek Pedersen				2213		1 - 0
+5				Erik Dingertz				2093		-				Filip Björkman				2113		1 - 0
+6		FM		Joar Östlund				2335		-				Matija Sakic				2065		1 - 0
+7				Jussi Jakenberg				2022		-				Victor Muntean				2141		0 - 1
+8				Elias Kingsley				1977		-				Pratyush Tripathi				2108		½ - ½
+9				Vidar Seiger				2109		-				Tim Nordenfur				1985		½ - ½
+10				Khaschuluu Sergelenbaatar				1871		-				Oliver Nilsson				2035		0 - 1
+11				Rohan Gore				1793		-				Lennart Evertsson				2031		1 - 0
+12				Aryan Banerjee				2001		-				Herman Enholm				1923		0 - 1
+13				Lukas Willstedt				2046		-				Hans Rånby				1893		1 - 0
+14				Lavinia Valcu				2039		-				Olle Ålgars				1880		1 - 0
+15		WIM		Cristine Rose Mariano				1944		-				Joar Berglund				1886		1 - 0
+16				Lo Ljungros				1936		-				Jesper Borin				1878		1 - 0
+17				Anders Kallin				1827		-				Carina Wickström				1907		0 - 1
+18				Stefan Nyberg				1896		-				Kenneth Fahlberg				1846		½ - ½
+19				Nicholas Bychkov Zwahlen				1796		-				Joel Åhfeldt				1897		0 - 1
+20				Morris Bergqvist				1818		-				Per Isaksson				1954		1 - 0
+21				Martti Hamina				1803		-				Svante Nödtveidt				1691		½ - ½
+22				Karl-Oskar Rehnberg				1480		-				André J Lindebaum				1748		0 - 1
+23				Hugo Sundell				1728		-				Maxime De Lafonteyne						½ - ½
+24				Radu Cernea				1783		-				Mikael Blom				1889		½ - ½
+25				Neo Malmquist				1768		-		CM		Mikael Helin				1885		1 - 0
+26				Fredrik Möllerström				1848		-				Anton Nordenfur				1641		0 - 1
+27				Peder Gedda				1835		-				Hugo Hardwick				1733		½ - ½
+28				Lars-Åke Pettersson				1761		-				Christer Johansson				1828		1 - 0
+29				Lars Eriksson				1734		-				Björn Löfström				1800		½ - ½
+30				Ivar Arnshav						-				Jonas Sandberg				1794		1 - 0
+31				Hanns Ivar Uniyal				1622		-				Kjell Jernselius				1787		0 - 1
+32				Jens Ahlström				1624		-				Roy Karlsson				1852		0 - 1
+33				Karam Masoudi				1833		-				Mukhtar Jamshedi				1778		0 - 1
+34				Jouni Kaunonen				1721		-				Simon Johansson				1726		0 - 1
+35				Joacim Hultin				1763		-				Kristoffer Schultz						0 - 1
+36				Eddie Parteg				1709		-				Sayak Raj Bardhan				1680		1 - 0 w.o
+37				Christer Nilsson				1575		-				Anders Hillbur				1688		1 - 0
+38				Patrik Wiss				1650		-				Christer Carmegren				1579		1 - 0
+39				Måns Nödtveidt				1524		-				Salar Banavi				1671		0 - 1
+40				Vida Radon				1406		-				David Broman				1417		0 - 1
+Round
