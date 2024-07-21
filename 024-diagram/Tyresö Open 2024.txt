@@ -1,0 +1,1458 @@
+	1		IM Hampus Sörensen		SK Rockaden, Sthlm		2416
+53
+1
+24
+1
+8
+1
+16
+1
+15
+1
+14
+½
+2
+½
+5
+½
+6.5		38.00
+	2		FM Joar Ölund		Stockholms SS		2366
+62
+1
+50
+1
+28
+1
+6
+1
+14
+½
+5
+1
+1
+½
+4
+½
+6.5		37.50
+	3		FM Vidar Grahn		Trojanska Hästen		2272
+21
+1
+19
+0
+46
+1
+54
+1
+28
+½
+18
+1
+16
+1
+11
+1
+6.5		34.00
+	4		IM Michael Wiedenkeller		SK Rockaden, Sthlm		2413
+71
+1
+36
+0
+70
+1
+61
+1
+8
+1
+15
+1
+14
+1
+2
+½
+6.5		31.50
+	5		FM Leo Crevatin		SK Rockaden, Sthlm		2235
+39
+1
+17
+½
+25
+1
+22
+1
+9
+1
+2
+0
+23
+1
+1
+½
+6.0		38.50
+	6		Erik Dingertz		Kristallens SK		2093
+58
+1
+35
+1
+30
+1
+2
+0
+10
+½
+17
+½
+34
+1
+14
+1
+6.0		34.50
+	7		Michael Mattsson		SS 4 Springare		2048
+75
+1
+41
+1
+52
+1
+14
+0
+38
+½
+29
+½
+18
+1
+15
+1
+6.0		31.50
+	8		Oliver Nilsson		Trojanska Hästen		2035
+51
+1
+37
+1
+1
+0
+34
+1
+4
+0
+21
+1
+10
+½
+30
+1
+5.5		36.00
+	9		Victor Muntean		SSK Hammarö		2141
+48
+1
+25
+½
+17
+1
+12
+1
+5
+0
+28
+1
+11
+0
+29
+1
+5.5		36.00
+	10		Rohan Gore		Trojanska Hästen		1793
+16
+0
+77
+1
+26
+1
+36
+1
+6
+½
+20
+½
+8
+½
+28
+1
+5.5		35.00
+	11		Michael Duke		Akademiska Schacksällskapet Umeå		2076
+60
+1
+61
+1
+19
+1
+15
+0
+35
+1
+16
+½
+9
+1
+3
+0
+5.5		34.50
+	12		FM Joar Östlund		Wasa SK		2335
+37
+0
+45
+1
+21
+1
+9
+0
+62
+1
+40
+1
+17
+½
+20
+1
+5.5		32.50
+	13		Herman Enholm		SK Rockaden, Sthlm		1923
+70
+½
+42
+0
+57
+1
+43
+1
+23
+0
+51
+1
+50
+1
+36
+1
+5.5		27.00
+	14		Filip Björkman		Västerås SK		2113
+64
+1
+27
+1
+36
+1
+7
+1
+2
+½
+1
+½
+4
+0
+6
+0
+5.0		40.50
+	15		FM Daniel Vesterbaek Pedersen		Denmark		2213
+57
+1
+18
+1
+29
+1
+11
+1
+1
+0
+4
+0
+25
+1
+7
+0
+5.0		39.00
+	16		Pratyush Tripathi		SS 4 Springare		2108
+10
+1
+40
+1
+34
+1
+1
+0
+19
+1
+11
+½
+3
+0
+17
+½
+5.0		38.00
+	17		Elias Kingsley		SS 4 Springare		1977
+67
+1
+5
+½
+9
+0
+70
+1
+31
+1
+6
+½
+12
+½
+16
+½
+5.0		35.00
+	18		Carina Wickström		Stockholms SS		1907
+68
+1
+15
+0
+47
+1
+51
+1
+22
+1
+3
+0
+7
+0
+37
+1
+5.0		34.00
+	19		Lo Ljungros		Kristallens SK		1936
+76
+1
+3
+1
+11
+0
+44
+1
+16
+0
+31
+½
+35
+½
+41
+1
+5.0		33.50
+	20		Matija Sakic		SK Rockaden, Sthlm		2065
+44
+1
+34
+0
+37
+1
+30
+½
+33
+1
+10
+½
+32
+1
+12
+0
+5.0		32.50
+	21		Morris Bergqvist		Kristallens SK		1818
+3
+0
+76
+1
+12
+0
+55
+1
+27
+1
+8
+0
+61
+1
+50
+1
+5.0		32.00
+	22		Lavinia Valcu		Solna SS		2039
+31
+1
+54
+1
+42
+1
+5
+0
+18
+0
+35
+½
+29
+½
+34
+1
+5.0		32.00
+	23		Vidar Seiger		SS 4 Springare		2109
+46
+1
+52
+0
+60
+½
+56
+1
+13
+1
+38
+1
+5
+0
+24
+½
+5.0		32.00
+	24		Tim Nordenfur		Kungstornet		1985
+74
+1
+1
+0
+44
+0
+47
+1
+37
+1
+39
+½
+43
+1
+23
+½
+5.0		31.50
+	25		WIM Cristine Rose Mariano		Wasa SK		1944
+77
+1
+9
+½
+5
+0
+63
+½
+56
+1
+41
+1
+15
+0
+35
+1
+5.0		31.00
+	26		Lukas Willstedt		SK Rockaden, Sthlm		2046
+47
+1
+30
+0
+10
+0
+75
+½
+70
+1
+33
+½
+38
+1
+40
+1
+5.0		29.50
+	27		Joel Åhfeldt		Solna SS		1897
+72
+1
+14
+0
+51
+0
+45
+1
+21
+0
+58
+1
+53
+1
+48
+1
+5.0		28.00
+	28		Lennart Evertsson		Kungstornet		2031
+56
+1
+33
+1
+2
+0
+53
+1
+3
+½
+9
+0
+39
+1
+10
+0
+4.5		36.00
+	29		Jussi Jakenberg		SS 4 Springare		2022
+45
+1
+73
+1
+15
+0
+33
+½
+30
+1
+7
+½
+22
+½
+9
+0
+4.5		34.50
+	30		Khaschuluu Sergelenbaatar		SK Rockaden, Sthlm		1871
+81
+1
+26
+1
+6
+0
+20
+½
+29
+0
+64
+1
+31
+1
+8
+0
+4.5		33.50
+	31		André J Lindebaum		SK Rockaden, Sthlm		1748
+22
+0
+49
+1
+32
+1
+50
+1
+17
+0
+19
+½
+30
+0
+55
+1
+4.5		31.00
+	32		Stefan Nyberg		Kungstornet		1896
+42
+0
+43
+1
+31
+0
+46
+1
+59
+1
+48
+1
+20
+0
+33
+½
+4.5		30.00
+	33		Kenneth Fahlberg		Sundsvalls SS		1846
+65
+1
+28
+0
+72
+1
+29
+½
+20
+0
+26
+½
+63
+1
+32
+½
+4.5		29.00
+	34		Olle Ålgars		Täby SK		1880
+55
+1
+20
+1
+16
+0
+8
+0
+63
+1
+36
+1
+6
+0
+22
+0
+4.0		34.00
+	35		Joar Berglund		Södertälje SS		1886
+69
+1
+6
+0
+59
+1
+42
+1
+11
+0
+22
+½
+19
+½
+25
+0
+4.0		34.00
+	36		Aryan Banerjee		SS 4 Springare		2001
+59
+1
+4
+1
+14
+0
+10
+0
+53
+1
+34
+0
+62
+1
+13
+0
+4.0		33.50
+	37		Anders Kallin		SK Pjäsen		1827
+12
+1
+8
+0
+20
+0
+73
+1
+24
+0
+77
+1
+52
+1
+18
+0
+4.0		32.50
+	38		Svante Nödtveidt		SK Rockaden, Sthlm		1691
+50
+0w
+62
+1
+41
+1
+52
+1
+7
+½
+23
+0
+26
+0
+39
+½
+4.0		32.00
+	39		Martti Hamina		Eskilstuna SK		1803
+5
+0
+59
+0
+79
+1
+49
+1
+52
+1
+24
+½
+28
+0
+38
+½
+4.0		30.50
+	40		Hans Rånby		Wasa SK		1893
+63
+1
+16
+0
+56
+0
+60
+1
+42
+1
+12
+0
+57
+1
+26
+0
+4.0		30.00
+	41		Jesper Borin		Stockholms SS		1878
+78
+1
+7
+0
+38
+0
+74
+1
+44
+1
+25
+0
+49
+1
+19
+0
+4.0		30.00
+	42		Anton Nordenfur		Wasa SK		1641
+32
+1
+13
+1
+22
+0
+35
+0
+40
+0
+57
+0
+70
+1
+66
+1
+4.0		29.50
+	43		Maxime De Lafonteyne		Strängnäs SS		0
+66
+½
+32
+0
+68
+1
+13
+0
+71
+1
+54
+1
+24
+0
+45
+½
+4.0		28.50
+	44		Neo Malmquist		Trojanska Hästen		1768
+20
+0
+69
+1
+24
+1
+19
+0
+41
+0
+52
+0
+73
+1
+61
+1
+4.0		28.00
+	45		Hugo Sundell		Upsala ASS		1728
+29
+0
+12
+0
+78
+1
+27
+0
+55
+½
+76
+1
+54
+1
+43
+½
+4.0		28.00
+	46		Kjell Jernselius		Kungstornet		1787
+23
+0
+79
+1
+3
+0
+32
+0
+68
+1
+49
+0
+74
+1
+63
+1
+4.0		27.50
+	47		Lars-Åke Pettersson		Seniorschack Stockholm		1761
+26
+0
+55
+1
+18
+0
+24
+0
+79
+1
+61
+0
+65
+1
+62
+1
+4.0		27.00
+	48		Nicholas Bychkov Zwahlen		Kings and Queens!		1796
+9
+0
+67
+0
+69
+1
+65
+1
+61
+1
+32
+0
+66
+1
+27
+0
+4.0		26.00
+	49		Ivar Arnshav		Tyresö SK		0
+54
+0
+31
+0
+F
+1w
+39
+0
+74
+1
+46
+1
+41
+0
+64
+1
+4.0		25.50
+	50		Per Isaksson		Kungstornet		1954
+38
+1w
+2
+0
+75
+1
+31
+0
+64
+½
+60
+1
+13
+0
+21
+0
+3.5		31.50
+	51		Lars Eriksson		Tyresö SK		1733
+8
+0
+81
+1
+27
+1
+18
+0
+54
+½
+13
+0
+64
+½
+57
+½
+3.5		31.00
+	52		Mikael Blom		Västerås SK		1889
+79
+1
+23
+1
+7
+0
+38
+0
+39
+0
+44
+1
+37
+0
+58
+½
+3.5		30.50
+	53		Peder Gedda		Gävle SA		1835
+1
+0
+74
+1
+65
+1
+28
+0
+36
+0
+59
+1
+27
+0
+56
+½
+3.5		29.50
+	54		Roy Karlsson		Tyresö SK		1852
+49
+1
+22
+0
+73
+1
+3
+0
+51
+½
+43
+0
+45
+0
+72
+1
+3.5		29.00
+	55		Karl-Oskar Rehnberg		Farsta SK		1480
+34
+0
+47
+0
+58
+1
+21
+0
+45
+½
+70
+1
+60
+1
+31
+0
+3.5		28.00
+	56		Hugo Hardwick		Tyresö SK		1733
+28
+0
+71
+1
+40
+1
+23
+0
+25
+0
+66
+0
+67
+1
+53
+½
+3.5		27.50
+	57		Björn Löfström		Katrineholms SK		1800
+15
+0
+68
+½
+13
+0
+71
+½
+72
+1
+42
+1
+40
+0
+51
+½
+3.5		27.50
+	58		Radu Cernea		Kungstornet		1783
+6
+0
+63
+0
+55
+0
+69
+1
+73
+1
+27
+0
+77
+1w
+52
+½
+3.5		26.00
+	59		Simon Johansson		Västerås SK		1726
+36
+0
+39
+1
+35
+0
+66
+1
+32
+0
+53
+0
+71
+½
+74
+1
+3.5		25.50
+	60		Mukhtar Jamshedi		Wasa SK		1778
+11
+0
+80
+1
+23
+½
+40
+0
+75
+1
+50
+0
+55
+0
+71
+1
+3.5		25.50
+	61		CM Mikael Helin		Stockholms SS		1885
+80
+1
+11
+0
+67
+1
+4
+0
+48
+0
+47
+1
+21
+0
+44
+0
+3.0		31.50
+	62		Christer Johansson		Stockholms SS		1828
+2
+0
+38
+0
+76
+1
+72
+1
+12
+0
+67
+1
+36
+0
+47
+0
+3.0		29.50
+	63		Hanns Ivar Uniyal		Wasa SK		1622
+40
+0
+58
+1
+66
+½
+25
+½
+34
+0
+75
+1
+33
+0
+46
+0
+3.0		27.50
+	64		Jonas Sandberg		Solna SS		1794
+14
+0
+72
+0
+80
+1
+67
+1
+50
+½
+30
+0
+51
+½
+49
+0
+3.0		24.50
+	65		Kristoffer Schultz		Farsta SK		0
+33
+0
+F
+1w
+53
+0
+48
+0
+67
+0
+68
+1
+47
+0
+75
+1
+3.0		24.50
+	66		Fredrik Möllerström		SS Delectus		1848
+43
+½
+70
+0
+63
+½
+59
+0
+76
+1
+56
+1
+48
+0
+42
+0
+3.0		24.50
+	67		Eddie Parteg		Tyresö SK		1709
+17
+0
+48
+1
+61
+0
+64
+0
+65
+1
+62
+0
+56
+0
+73
+1w
+3.0		24.00
+	68		Patrik Wiss		Kungstornet		1650
+18
+0
+57
+½
+43
+0
+77
+½
+46
+0
+65
+0
+78
+1
+79
+1
+3.0		23.50
+	69		Christer Nilsson		Wasa SK		1575
+35
+0
+44
+0
+48
+0
+58
+0
+80
+½
+72
+½
+F
+1w
+76
+1
+3.0		21.00
+	70		Salar Banavi		Farsta SK		1671
+13
+½
+66
+1
+4
+0
+17
+0
+26
+0
+55
+0
+42
+0
+80
+1
+2.5		32.50
+	71		Karam Masoudi		Södertälje SS		1833
+4
+0
+56
+0
+77
+½
+57
+½
+43
+0
+79
+1
+59
+½
+60
+0
+2.5		27.50
+	72		Jens Ahlström		SK Passanten		1624
+27
+0
+64
+1
+33
+0
+62
+0
+57
+0
+69
+½
+80
+1
+54
+0
+2.5		25.00
+	73		Sayak Raj Bardhan		SS 4 Springare		1680
+F
+1w
+29
+0
+54
+0
+37
+0
+58
+0
+81
+1
+44
+0
+67
+0w
+2.0		25.50
+	74		Jouni Kaunonen		Finland		1721
+24
+0
+53
+0
+81
+1
+41
+0
+49
+0
+78
+1
+46
+0
+59
+0
+2.0		25.00
+	75		Joacim Hultin		Tyresö SK		1763
+7
+0
+78
+1
+50
+0
+26
+½
+60
+0
+63
+0
+79
+½
+65
+0
+2.0		24.50
+	76		Anders Hillbur		SK Rockaden, Sthlm		1688
+19
+0
+21
+0
+62
+0
+78
+1
+66
+0
+45
+0
+81
+1
+69
+0
+2.0		24.00
+	77		Sid Van Den Brink		Kristallens SK		1695
+25
+0
+10
+0
+71
+½
+68
+½
+81
+1
+37
+0
+58
+0w
+1
+0
+2.0		24.00
+	78		David Broman		Västerås SK		1417
+41
+0
+75
+0
+45
+0
+76
+0
+F
+1w
+74
+0
+68
+0
+81
+1
+2.0		18.50
+	79		Christer Carmegren		Västerås SK		1579
+52
+0
+46
+0
+39
+0
+80
+1
+47
+0
+71
+0
+75
+½
+68
+0
+1.5		23.00
+	80		Måns Nödtveidt		SK Rockaden, Sthlm		1524
+61
+0
+60
+0
+64
+0
+79
+0
+69
+½
+F
+1w
+72
+0
+70
+0
+1.5		18.50
+	81		Vida Radon		Seniorschack Stockholm		1406
+30
+0
+51
+0
+74
+0
+F
+1w
+77
+0
+73
+0
+76
+0
+78
+0
+1.0		19.00
