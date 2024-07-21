@@ -2,55 +2,66 @@ range = _.range
 print = console.log
 
 toggle = 0
-elo_points = []
-swiss_points = []
 
-loadData = (data) ->
-	# data = if toggle then elo_data else swiss_data
-	lines = data.split "\n"	
-	result = []
-	for line in lines
-		cells = line.split "\t"
-		x = parseInt cells[0]
-		y = parseInt cells[1]
-		result.push [x,y]
-	result
+tournaments = []
+
+class Tournament
+	constructor : (@title, @color, @x0, @y0, @data) ->
+		lines = @data.split "\n"	
+		@points = []
+		total = 0
+		for line in lines
+			cells = line.split "\t"
+			x = parseInt cells[0]
+			y = parseInt cells[1]
+			total += abs x-y
+			@points.push [x,y]
+		@average = total / @points.length
+		@title += " avg=" + @average.toFixed 0
+
+	draw :  ->
+		i = 0
+		if toggle != 2
+			push()
+			stroke 'black'
+			strokeWeight sqrt(2) * @average
+			line 0,0,1200,1200
+			strokeWeight 1
+			stroke 'white'
+			line 0,0,1200,1200
+			pop()
+
+		fill @color
+		stroke 'black'
+		text @title, @x0, @y0
+		for [x,y] in @points
+			size = 2 * sqrt abs x-y
+			circle 2450-x, 2450-y, 2 + size
+			if x-size/2 < 2450-mouseX < x+size/2 and y-size/2 < 2450-mouseY < y+size/2 
+				push()
+				fill 'black'
+				text "#{x} vs #{y} => #{abs x-y}", width/2, 150 + 50*i
+				i += 1
+				pop()
 
 window.setup = -> 
-	createCanvas windowWidth-20,windowHeight-20
+	createCanvas windowWidth-4,windowHeight-4
 	rectMode CENTER
 	textAlign CENTER,CENTER
 	textSize 32
-	elo_points = loadData elo_data
-	swiss_points = loadData swiss_data
+	tournaments.push new Tournament "Swiss Pairing",[255,0,0,128], width/2, 100, swiss_data
+	tournaments.push new Tournament "ELO Pairing",  [0,255,0,128], width/2,  50, elo_data
 
 window.draw = ->
 	background 'gray'
 
-	for i in range -7,8
-		stroke if i==0 then 'white' else 'black'
-		line 0,0+i*100,1200,1200+i*100
+	for i in range -13,13
+		stroke 'white'
+		line 0,0+i*100,1200,1200+i*100		
 
-	if toggle in [0,2]
-		fill 0,255,0,128
-		drawPoints "ELO Pairing",width/2,50,elo_points
+	if toggle in [0,2] then tournaments[0].draw()
+	if toggle in [1,2] then tournaments[1].draw()
 
-	if toggle in [1,2]
-		fill 255,0,0,128
-		drawPoints "Swiss Pairing",width/2,100,swiss_points
-
-drawPoints = (title,x0,y0,points) ->
-	i = 0
-	text title,x0,y0
-	for [x,y] in points
-		size = 2 * sqrt abs x-y
-		circle 2450-x, 2450-y, 2 + size
-		if x-size/2 < 2450-mouseX < x+size/2 and y-size/2 < 2450-mouseY < y+size/2 
-			push()
-			fill 'black'
-			text "#{x} vs #{y} => #{abs x-y}" ,width/2,150 + 50*i
-			i += 1
-			pop()
 
 window.keyPressed   = -> toggle = (toggle+1) % 3
 window.mousePressed = -> toggle = (toggle+1) % 3
