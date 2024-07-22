@@ -4,7 +4,7 @@ import {elo_data} from './elo.js'
 range = _.range
 print = console.log
 
-[ELO,SWISS,DISTANCE,GAP,X,Y] = [1,2,4,8,16,32]
+[ELO,SWISS,DISTANCE,GAP,X,Y,GRID] = [1,2,4,8,16,32,64]
 
 t_active = 0
 
@@ -39,6 +39,14 @@ class Tournament
 		for p in @points
 			x = p[0]
 			line 0, 2450-x, width*2, 2450-x
+		pop()
+
+	drawGrid : ->
+		push()
+		stroke 'darkgray'
+		for i in range 1400,2500,100
+			line 2450-i,     0, 2450-i, 1150
+			line      0, 2450-i, 1150,   2450-i
 		pop()
 
 	draw :  ->
@@ -88,6 +96,7 @@ window.draw = ->
 				line 0,0+i*100,1200,1200+i*100
 		if t_active & X       then tournaments[0].drawX()
 		if t_active & Y       then tournaments[0].drawY()
+		if t_active & GRID    then tournaments[0].drawGrid()
 		if t_active & SWISS   then tournaments[0].draw()
 		if t_active & ELO     then tournaments[1].draw()
 	else
@@ -99,6 +108,7 @@ window.draw = ->
 		text "g = gap",       width/2,400
 		text "x = players x", width/2,500
 		text "y = players y", width/2,600
+		text "r = grid",      width/2,700
 
 window.mousePressed = -> t_active = 0
 
@@ -109,5 +119,6 @@ window.keyPressed = ->
 	if key == 'g' then t_active ^= GAP
 	if key == 'x' then t_active ^= X
 	if key == 'y' then t_active ^= Y
+	if key == 'r' then t_active ^= GRID
 
 window.windowResized = -> resizeCanvas windowWidth-4, windowHeight-4
