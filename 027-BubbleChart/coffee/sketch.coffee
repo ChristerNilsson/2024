@@ -6,7 +6,7 @@ toggle = 0
 tournaments = []
 
 class Tournament
-	constructor : (@title, @color, @x0, @y0, @data) ->
+	constructor : (@title, @color, @y0, @data) ->
 		lines = @data.split "\n"	
 		@points = []
 		total = 0
@@ -33,14 +33,16 @@ class Tournament
 
 		fill @color
 		stroke 'black'
-		text @title, @x0, @y0
+		text @title, 950, @y0
 		for [x,y] in @points
 			size = 2 * sqrt abs x-y
 			circle 2450-x, 2450-y, 2 + size
-			if x-size/2 < 2450-mouseX < x+size/2 and y-size/2 < 2450-mouseY < y+size/2 
+			xm = mouseX / (height/1100)
+			ym = mouseY / (height/1100)
+			if x-size/2 < 2450-xm < x+size/2 and y-size/2 < 2450-ym < y+size/2 
 				push()
 				fill 'black'
-				text "#{x} vs #{y} => #{abs x-y}", width/2, 150 + 50*i
+				text "#{x} vs #{y} => #{abs x-y}", 950, 150 + 50*i
 				i += 1
 				pop()
 
@@ -49,11 +51,12 @@ window.setup = ->
 	rectMode CENTER
 	textAlign CENTER,CENTER
 	textSize 32
-	tournaments.push new Tournament "Swiss Pairing",[255,0,0,128], width/2, 100, swiss_data
-	tournaments.push new Tournament "ELO Pairing",  [0,255,0,128], width/2,  50, elo_data
+	tournaments.push new Tournament "Swiss Pairing",[255,0,0,128], 100, swiss_data
+	tournaments.push new Tournament "ELO Pairing",  [0,255,0,128],  50, elo_data
 
 window.draw = ->
 	background 'gray'
+	scale height/1100
 
 	for i in range -13,13
 		stroke 'white'
@@ -65,6 +68,7 @@ window.draw = ->
 
 window.keyPressed   = -> toggle = (toggle+1) % 3
 window.mousePressed = -> toggle = (toggle+1) % 3
+window.windowResized = -> resizeCanvas windowWidth-4, windowHeight-4
 
 swiss_data =
 """
@@ -679,7 +683,6 @@ swiss_data =
 1695	1406
 1695	1827
 1695	1783
-1695	2416
 1417	1878
 1417	1763
 1417	1728
