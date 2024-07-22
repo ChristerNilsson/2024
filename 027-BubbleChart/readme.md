@@ -22,3 +22,5 @@ Of 116 games, where the winner was stronger than the weaker by 220 elos, only ni
 Why are these 116 games even played, when they are so predictable?
 
 Also, the two highest ranked, 2416 and 2413, never met in Swiss. With Elo, they would meet in the first round!
+
+The two lowest rated players, 1406 and 1417, actually met each other, but not the other six closest players.
