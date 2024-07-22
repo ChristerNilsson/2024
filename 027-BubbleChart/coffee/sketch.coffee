@@ -4,7 +4,7 @@ import {elo_data} from './elo.js'
 range = _.range
 print = console.log
 
-[ELO,SWISS,DISTANCE,GAP,PLAYERS] = [1,2,4,8,16]
+[ELO,SWISS,DISTANCE,GAP,X,Y] = [1,2,4,8,16,32]
 
 t_active = 0
 
@@ -25,12 +25,20 @@ class Tournament
 		@average = total / @points.length
 		@title += " avg=" + @average.toFixed 0
 
-	drawLines : ->
+	drawX : ->
 		push()
 		stroke 'darkgray'
 		for p in @points
 			x = p[0]
 			line 2450-x, 0, 2450-x, height * 2
+		pop()
+
+	drawY : ->
+		push()
+		stroke 'darkgray'
+		for p in @points
+			x = p[0]
+			line 0, 2450-x, width*2, 2450-x
 		pop()
 
 	draw :  ->
@@ -78,17 +86,19 @@ window.draw = ->
 			for i in range -13,13
 				stroke 'yellow'
 				line 0,0+i*100,1200,1200+i*100
-		if t_active & PLAYERS then tournaments[0].drawLines()
+		if t_active & X       then tournaments[0].drawX()
+		if t_active & Y       then tournaments[0].drawY()
 		if t_active & SWISS   then tournaments[0].draw()
 		if t_active & ELO     then tournaments[1].draw()
 	else
 		fill 'black'
 		noStroke()
-		text "e = elo",     width/2,100
-		text "s = swiss",   width/2,200
-		text "d = distance",width/2,300
-		text "g = gap",     width/2,400
-		text "p = players", width/2,500
+		text "e = elo",       width/2,100
+		text "s = swiss",     width/2,200
+		text "d = distance",  width/2,300
+		text "g = gap",       width/2,400
+		text "x = players x", width/2,500
+		text "y = players y", width/2,600
 
 window.mousePressed = -> t_active = 0
 
@@ -97,6 +107,7 @@ window.keyPressed = ->
 	if key == 's' then t_active ^= SWISS
 	if key == 'd' then t_active ^= DISTANCE
 	if key == 'g' then t_active ^= GAP
-	if key == 'p' then t_active ^= PLAYERS
+	if key == 'x' then t_active ^= X
+	if key == 'y' then t_active ^= Y
 
 window.windowResized = -> resizeCanvas windowWidth-4, windowHeight-4
