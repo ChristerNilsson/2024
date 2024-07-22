@@ -4,11 +4,9 @@ import {elo_data} from './elo.js'
 range = _.range
 print = console.log
 
-t_elo = false
-t_swiss = false
-t_distance = false
-t_gap = false
-t_players = false
+[ELO,SWISS,DISTANCE,GAP,PLAYERS] = [1,2,4,8,16]
+
+t_active = 0
 
 tournaments = []
 
@@ -32,14 +30,12 @@ class Tournament
 		stroke 'darkgray'
 		for p in @points
 			x = p[0]
-			# y = p[1]
 			line 2450-x, 0, 2450-x, height * 2
-			# line 0, 2450-y, width, 2450-y
 		pop()
 
 	draw :  ->
 		i = 0
-		if t_gap
+		if t_active & GAP
 			push()
 			stroke 'black'
 			strokeWeight sqrt(2) * @average
@@ -76,29 +72,31 @@ window.draw = ->
 	background 'gray'
 	scale height/1100
 
-	if t_elo or t_swiss or t_distance or t_gap or t_players
+	if t_active 
 
-		if t_distance
+		if t_active & DISTANCE
 			for i in range -13,13
 				stroke 'yellow'
 				line 0,0+i*100,1200,1200+i*100
-		if t_players then tournaments[0].drawLines()
-		if t_swiss then tournaments[0].draw()
-		if t_elo then tournaments[1].draw()
+		if t_active & PLAYERS then tournaments[0].drawLines()
+		if t_active & SWISS   then tournaments[0].draw()
+		if t_active & ELO     then tournaments[1].draw()
 	else
 		fill 'black'
 		noStroke()
-		text "e = elo",width/2,100
-		text "s = swiss",width/2,200
+		text "e = elo",     width/2,100
+		text "s = swiss",   width/2,200
 		text "d = distance",width/2,300
-		text "g = gap",width/2,400
-		text "p = players",width/2,500
+		text "g = gap",     width/2,400
+		text "p = players", width/2,500
 
-window.keyPressed   = -> 
-	if key == 'e' then t_elo = not t_elo
-	if key == 's' then t_swiss = not t_swiss
-	if key == 'd' then t_distance = not t_distance
-	if key == 'g' then t_gap = not t_gap
-	if key == 'p' then t_players = not t_players
+window.mousePressed = -> t_active = 0
+
+window.keyPressed = -> 
+	if key == 'e' then t_active ^= ELO
+	if key == 's' then t_active ^= SWISS
+	if key == 'd' then t_active ^= DISTANCE
+	if key == 'g' then t_active ^= GAP
+	if key == 'p' then t_active ^= PLAYERS
 
 window.windowResized = -> resizeCanvas windowWidth-4, windowHeight-4

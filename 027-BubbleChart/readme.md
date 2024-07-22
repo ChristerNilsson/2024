@@ -4,10 +4,11 @@
 
 The area of the bubble is proportional to the ELO gap.  
 
-# Sensations
+## Observations
 
-Of 116 games, where the winner was stronger than the weaker by 220 elos, only nine was won by the weaker player.  
-220 elos is the average gap. 320 games were played.
+Of 116 games, where the gap was larger than the average gap, only nine was won by the weaker player.  
+The average swiss gap is 207 elos. 
+Around 320 games were played.
 
 * 2046 1793  
 * 2031 1793  
@@ -21,6 +22,10 @@ Of 116 games, where the winner was stronger than the weaker by 220 elos, only ni
 
 Why are these 116 games even played, when they are so predictable?
 
-Also, the two highest ranked, 2416 and 2413, never met in Swiss. With Elo, they would meet in the first round!
+## Highest rated players did not play at all
+
+The two highest rated player, 2416 and 2413, never met in Swiss. With Elo Pairings, they would meet in the first round.
+
+## Lowest rated players met in the eight round, the last.
 
 The two lowest rated players, 1406 and 1417, actually met each other, but not the other six closest players.
