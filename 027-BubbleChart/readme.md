@@ -2,6 +2,8 @@
 
 [Try it!](https://christernilsson.github.io/2024/027-BubbleChart)  
 
+Weakest players in lower left corner.  
+Strongest players in upper top corner.  
 The area of the bubble is proportional to the ELO gap.  
 
 ## Observations
@@ -22,7 +24,7 @@ Around 320 games were played.
 
 Why are these 116 games even played, when they are so predictable?
 
-## Highest rated players did not play at all
+## Highest rated players did not meet
 
 The two highest rated player, 2416 and 2413, never met in Swiss. With Elo Pairings, they would meet in the first round.
 
