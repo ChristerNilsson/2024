@@ -3,7 +3,7 @@
 [Try it!](https://christernilsson.github.io/2024/027-BubbleChart)  
 
 Weakest players in lower left corner.  
-Strongest players in upper top corner.  
+Strongest players in upper right corner.  
 The area of the bubble is proportional to the ELO gap.  
 
 ## Observations
