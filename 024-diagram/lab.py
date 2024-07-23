@@ -16,16 +16,18 @@ def elo_probabilities(R_W, R_B, draw=0.2):
 	E_W = 1 / (1 + 10 ** ((R_B - R_W) / 400))
 	win = E_W - draw / 2
 	loss = (1 - E_W) - draw / 2
-	r = random.random()
-	if r < loss: return 0
-	if r < loss+draw: return 1
-	return 2
+	# r = random.random()
+	# if r < loss: return 0
+	# if r < loss+draw: return 1
+	# return 2
 
 	return [loss, draw, win]
 
-arr=[0,0,0]
-for i in range(1000):
-	p = elo_probabilities(1400, 1100)
-	arr[p]+=1
-print(arr)
+print(elo_probabilities(2413, 1671))
 
+# arr=[0,0,0]
+# for i in range(1000):
+# 	p = elo_probabilities(2413, 1671)
+# 	arr[p]+=1
+# print(arr)
+#

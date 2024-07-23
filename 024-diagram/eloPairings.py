@@ -14,6 +14,8 @@ def memberSchack(title,filename,PLAYERS,ROUNDS):
 		elos = {}
 		for player in range(PLAYERS):
 			line = f.readline().strip()
+			if '1695' in line:
+				z=99
 			arr=line.split('\t')
 			id = int(arr[0])
 			if arr[6]=='0': arr[6]='1400'
@@ -32,6 +34,7 @@ def memberSchack(title,filename,PLAYERS,ROUNDS):
 			players[id]=[ids,results]
 			line = f.readline().strip()
 
+		normal = 0
 		for i in range(1,PLAYERS+1):
 			ids,results = players[i]
 			summa = 0
@@ -39,7 +42,17 @@ def memberSchack(title,filename,PLAYERS,ROUNDS):
 				res = results[r]
 				if res=='1': summa += elos[ids[r]]
 				if res=='½': summa += elos[ids[r]] * 0.5
-			print(i, elos[i], ids,results,summa)
+				if ids[r]==0: continue
+				# print(i,ids[r])
+				# print(str(elos[i]) + "\t" + str(elos[ids[r]]))
+
+				if i in elos:
+					if elos[ids[r]] > elos[i] + 220 and elos[i] != 1400:
+						if res == '1':
+							print('sensation',elos[ids[r]], elos[i])
+						normal+=1
+		print('normal',normal)
+		# print(i, elos[i], ids,results,summa)
 
 
 		# for i in range(81):
@@ -78,6 +91,6 @@ def memberSchack(title,filename,PLAYERS,ROUNDS):
 
 	# dumpCanvas(title,rounds,elos, inv)
 
-# memberSchack('Tyresö Open 2024','Tyresö Open 2024.txt',8)
+memberSchack('Tyresö Open 2024','Tyresö Open 2024.txt',81,8)
 
-memberSchack('Senior KM Klass 1','Klass 1.txt',14,13)
+#memberSchack('Senior KM Klass 1','Klass 1.txt',14,13)
