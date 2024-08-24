@@ -12,7 +12,7 @@ import re
 
 def ass(a,b):
 	if a!=b:
-		print('Add failed!')
+		print('Ass failed!')
 		print('  ',a)
 		print('  ',b)
 
