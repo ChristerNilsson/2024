@@ -1,0 +1,9 @@
+{
+	"type": "module",
+	"name": "example",
+	"version": "1.0.0",
+	"dependencies": {
+		"lodash": "^4.17.21",
+		"marked": "^14.1.1"
+	}
+}
