@@ -8,6 +8,8 @@ figures = []
 answers = []
 facit = 0 
 
+pressed = false
+
 points = []
 points.push [10,10]
 points.push [50,10]
@@ -115,8 +117,15 @@ window.draw = ->
 			pop()
 
 window.mousePressed = ->
+	if pressed then return
+	echo 'pressed'
+	pressed = true
 	for i in range 6
 		[x,y] = buttons[i]
 		if x < mouseX < x+100 and y < mouseY < y+100
 			bg = if facit == i then 'green' else 'red'
 			newProblem()
+
+window.mouseReleased = ->
+	echo 'released'
+	pressed = false 
