@@ -4,40 +4,47 @@ EMPTY = '.'
 
 dump = print
 
-def manhattan(p,q):
-    px,py = unpack(p)
-    qx,qy = unpack(q)
-    dx = abs(px - qx)
-    dy = abs(py - qy)
-    return dx+dy
+def manhattan(p,q): # Square,Square
+    dx = abs(p.x - q.x)
+    dy = abs(p.y - q.y)
+    return dx + dy
 
-def unpack(index): return index//8,index%8
-def pack(x,y): return 8 * x + y
+def pack(x,y): return 8 * y + x
 
-def moveHor(bky,wky,wry):
-    if bky == 0: return 1
-    if bky >= 6: return bky-1
-    if bky+1 == wky: return bky-1
-    return bky+1
+def moveHor(bk,wk,wr):
+    if bk.x == 0: return 1
+    if bk.x >= 6: return bk.x-1
+    if bk.x+1 == wk.x: return bk.x-1
+    return bk.x+1
 
-def moveRookHor(wry):
-    if wry <= 3: return 7
+def moveRookHor(wr):
+    if wr.x <= 3: return 7
     return 0
 
-def tempodrag(wry):
-    if wry <= 3: return wry+1
-    return wry-1
+def tempodrag(wr):
+    if wr.x <= 3: return wr.x+1
+    return wr.x-1
+
+class Square:
+    def __init__(_,x,y):
+        _.x = x
+        _.y = y
+    def index(_):
+        res = pack(_.x,_.y)
+        return res
 
 class ChessGame:
     def __init__(_,position):
         _.board = [EMPTY] * 64
-        _.wk = pack(7-"12345678".index(position[1]), "abcdefgh".index(position[0]))
-        _.wr = pack(7-"12345678".index(position[3]), "abcdefgh".index(position[2]))
-        _.bk = pack(7-"12345678".index(position[5]), "abcdefgh".index(position[4]))
 
-        _.board[_.wk] = 'K'
-        _.board[_.wr] = 'R'
-        _.board[_.bk] = 'k'
+        _.wk = Square("abcdefgh".index(position[0]), 7-"12345678".index(position[1]))
+        _.wr = Square("abcdefgh".index(position[2]), 7-"12345678".index(position[3]))
+        _.bk = Square("abcdefgh".index(position[4]), 7-"12345678".index(position[5]))
+
+        _.board[_.wk.index()] = 'K'
+        _.board[_.wr.index()] = 'R'
+        _.board[_.bk.index()] = 'k'
+
         _.antal = 1
 
     def display_board(_):
@@ -45,99 +52,95 @@ class ChessGame:
         for row in range(8):
             t = ''
             for col in range(8):
-                t += '   ' + _.board[pack(row,col)]
+                t += '   ' + _.board[pack(col,row)]
             s += t + "\n"
         print(s)
 
-    def move_piece(_, piece, new_position):
+    def move_piece(_, piece, x,y):
         """Flytta en pjäs till en ny position"""
         if piece == 'K':
-            _.board[_.wk] = EMPTY
-            _.wk = new_position
-            _.board[_.wk] = 'K'
+            _.board[_.wk.index()] = EMPTY
+            _.wk = Square(x,y)
+            _.board[_.wk.index()] = 'K'
         elif piece == 'R':
-            _.board[_.wr] = EMPTY
-            _.wr = new_position
-            _.board[_.wr] = 'R'
+            _.board[_.wr.index()] = EMPTY
+            _.wr = Square(x,y)
+            _.board[_.wr.index()] = 'R'
         elif piece == 'k':
-            _.board[_.bk] = EMPTY
-            _.bk = new_position
-            _.board[_.bk] = 'k'
+            _.board[_.bk.index()] = EMPTY
+            _.bk = Square(x,y)
+            _.board[_.bk.index()] = 'k'
 
     def is_checkmate(_):
-        """Kontrollera om svart kung är schackmatt"""
-        bkx, bky = unpack(_.bk)
-        wkx, wky = unpack(_.wk)
-        wrx, wry = unpack(_.wr)
-
         # Om svarta kungen är vid brädets övre kant och instängd av vit kung och torn, är det schackmatt
-        if bkx == 0 and wkx == 2 and (abs(bky - wky) <= 1):
-            if bkx == wrx or bky == wry:  return True
+        if _.bk.y == 0 and _.wk.y == 2 and (abs(_.bk.x - _.wk.x) <= 1):
+            if _.bk.y == _.wr.y or _.bk.x == _.wr.x:  return True
         return False
 
     def move_black_king(_):
         """Grundläggande logik för att flytta svarta kungen bort från centrum och mot kanten"""
-        bkx, bky = unpack(_.bk)
-        wkx, wky = unpack(_.wk)
-        wrx, wry = unpack(_.wr)
-
         # Flytta mot kanten, grundlogik för att simulera flykten
-        if bkx == 0:
-            bky = moveHor(bky,wky,wry)
-        elif bkx < 7 and bkx + 1 != wrx and abs(bkx-wkx) > 2:
-            bkx += 1
-        elif bkx + 1 != wrx:
-            bkx -= 1
-            if bky<wry: bky += 1
-            else: bky -= 1
+        x = _.bk.x
+        y = _.bk.y
+        if _.bk.y == 0:
+            x = moveHor(_.bk,_.wk,_.wr)
+        elif _.bk.y < 7 and _.bk.y + 1 != _.wr.y and abs(_.bk.y - _.wk.y) > 2:
+            y += 1
+        elif _.bk.y + 1 != _.wr.y:
+            y -= 1
+            if _.bk.x < _.wr.x: x += 1
+            else: x -= 1
         else:
-            bky = moveHor(bky,wky,wry)
+            x = moveHor(_.bk,_.wk,_.wr)
 
-        _.move_piece('k', pack(bkx, bky))
+        _.move_piece('k', x,y)
 
     def apply_torres_algorithm(_):
         """Implementera Torres' slutspelsalgoritm baserat på de specificerade reglerna"""
-        bkx, bky = unpack(_.bk)
-        wkx, wky = unpack(_.wk)
-        wrx, wry = unpack(_.wr)
 
         # Kontrollera om kungen och tornet är för nära varandra
         if manhattan(_.bk,_.wr) <= 2:
-            if wrx in [0, 7]:
-                pass
+            if _.wr.x in [0, 7]:
                 dump("B Om tornet redan är på a- eller h-filen, gör inget")
             else:
                 dump("C Flytta tornet i säkerhet")
-                wry = moveRookHor(wry)
-                _.move_piece('R', pack(wrx, wry))
+                x = moveRookHor(_.wr)
+                y = _.wr.y
+                _.move_piece('R', x, y)
         else:
-            dx = abs(bkx - wrx)
-            if dx > 1:
+            dy = abs(_.bk.y - _.wr.y)
+            if dy > 1:
                 dump("E Tornet flyttas vertikalt mot svarta kungen")
-                wrx = wrx - dx+1 if wrx > bkx else wrx + dx
-                _.move_piece('R', pack(wrx, wry))
-            elif abs(bkx - wkx) > 2:
+                x = _.wr.x
+                y = _.wr.y - dy+1 if _.wr.y > _.bk.y else _.wr.y + dy
+                _.move_piece('R', x,y)
+            elif abs(_.bk.y - _.wk.y) > 2:
                 dump("F Vita kungen flyttas vertikalt mot svarta kungen")
-                wkx = (wkx - 1 if wkx > bkx else wkx + 1)
-                _.move_piece('K', pack(wkx, wky))
-            elif abs(wkx - bkx) == 2:
+                x = _.wk.x
+                y = (_.wk.y - 1 if _.wk.y > _.bk.y else _.wk.y + 1)
+                _.move_piece('K', x,y)
+            elif abs(_.wk.y - _.bk.y) == 2:
                 mh = manhattan(_.wk, _.bk)
-                if wky == bky:
+                if _.wk.x == _.bk.x:
                     dump("G Avancera med tornet")
-                    wrx = wrx - 1
-                    _.move_piece('R', pack(wrx, wry))
+                    x = _.wr.x
+                    y = _.wr.y - 1
+                    _.move_piece('R', x, y)
                 elif mh == 3:
                     dump("H Tempodrag")
-                    wry = tempodrag(wry)
-                    _.move_piece('R', pack(wrx, wry))
+                    x = tempodrag(_.wr)
+                    y = _.wr.y
+                    _.move_piece('R', x,y)
                 else:
                     dump("I Flytta vita kungen horisontellt mot svarta kungen")
-                    wky = wky - 1 if wky > bky else wky + 1
-                    _.move_piece('K', pack(wkx, wky))
+                    x = _.wk.x - 1 if _.wk.x > _.bk.x else _.wk.x + 1
+                    y = _.wk.y
+                    _.move_piece('K', x,y)
             else:
                 dump("J Tornet flyttas vertikalt mot svarta kungen")
-                wrx = wrx - 1 if wrx > bkx else wrx + 1
-                _.move_piece('R', pack(wrx, wry))
+                x = _.wr.x
+                y = _.wr.y - 1 if _.wr.y > _.bk.y else _.wr.y + 1
+                _.move_piece('R', x,y)
 
     def play(_):
 
@@ -152,7 +155,7 @@ class ChessGame:
             _.move_black_king()
 
         _.display_board()
-        #print("Schackmatt!")
+        print("Schackmatt!")
 
 def slump():
     arr = []
