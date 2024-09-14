@@ -56,7 +56,6 @@ newProblem = ->
 
 	answers = _.shuffle answers
 	facit = answers.indexOf abcd[8]
-	echo facit
 
 buttons = []
 buttons.push [50,400]
