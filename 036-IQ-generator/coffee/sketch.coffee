@@ -8,6 +8,10 @@ figures = []
 answers = []
 facit = 0 
 
+correct = 0
+wrong = 0
+start = new Date()
+
 pressed = false
 
 points = []
@@ -59,6 +63,8 @@ newProblem = ->
 	answers = _.shuffle answers
 	facit = answers.indexOf abcd[8]
 
+	draw()
+
 buttons = []
 buttons.push [50,400]
 buttons.push [150,400]
@@ -81,7 +87,7 @@ show = (pattern) ->
 		bit = 1 << ix
 		if pattern & bit then tri corner[0],corner[1],corner[2]
 
-window.draw = ->
+draw = ->
 	background bg
 	stroke 'black'
 	for i in range 4
@@ -99,7 +105,14 @@ window.draw = ->
 			else
 				show abcd[3*i+j]
 			pop()
+	
+	noStroke()
+	fill 'yellow'
+	text "#{correct} of #{correct+wrong}",200,30
+	text round((new Date()-start)/1000,1),200,630
+	fill 'white'
 
+	push()
 	translate 0,350
 
 	stroke 'black'
@@ -115,17 +128,20 @@ window.draw = ->
 			translate 50+i*100,50+j*100
 			show answers[i+3*j]
 			pop()
+	pop()
 
 window.mousePressed = ->
 	if pressed then return
-	echo 'pressed'
 	pressed = true
 	for i in range 6
 		[x,y] = buttons[i]
 		if x < mouseX < x+100 and y < mouseY < y+100
-			bg = if facit == i then 'green' else 'red'
+			if facit == i
+				bg = 'green'
+				correct += 1
+			else 
+				bg = 'red'
+				wrong += 1
 			newProblem()
 
-window.mouseReleased = ->
-	echo 'released'
-	pressed = false 
+window.mouseReleased = -> pressed = false 
