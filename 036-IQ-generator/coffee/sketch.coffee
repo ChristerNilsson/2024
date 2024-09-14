@@ -56,6 +56,7 @@ newProblem = ->
 
 	answers = _.shuffle answers
 	facit = answers.indexOf abcd[8]
+	echo facit
 
 buttons = []
 buttons.push [50,400]
@@ -111,7 +112,7 @@ window.draw = ->
 		for j in range 2
 			push()
 			translate 50+i*100,50+j*100
-			show answers[2*i+j]
+			show answers[i+3*j]
 			pop()
 
 window.mousePressed = ->
