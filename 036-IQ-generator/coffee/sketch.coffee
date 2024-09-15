@@ -18,7 +18,7 @@ problems = []
 nr = 0
 
 newProblem = ->
-	nr = _.sample range problems.length
+	nr = (nr+1) % problems.length
 	while true
 		figures =  _.sampleSize range(1 << problems[nr].length), 9
 
@@ -32,7 +32,7 @@ newProblem = ->
 		abcd[5] = abcd[3] ^ abcd[4]
 		abcd[6] = abcd[0] ^ abcd[3]
 		abcd[7] = abcd[1] ^ abcd[4]
-		abcd[8] = abcd[2] ^ abcd[5] # the questionmark
+		abcd[8] = abcd[2] ^ abcd[5] # the secret questionmark
 
 		answers = []
 		answers.push figures[4]
@@ -51,12 +51,9 @@ newProblem = ->
 	draw()
 
 buttons = []
-buttons.push [50,400]
-buttons.push [150,400]
-buttons.push [250,400]
-buttons.push [50,500]
-buttons.push [150,500]
-buttons.push [250,500]
+for i in [400,500]
+	for j in [50,150,250]
+		buttons.push [j,i]
 
 show = (pattern) ->
 	fill 'white'
@@ -133,15 +130,9 @@ window.mousePressed = ->
 window.mouseReleased = -> pressed = false 
 
 points = []
-points.push [10,10]
-points.push [50,10]
-points.push [90,10]
-points.push [10,50]
-points.push [50,50]
-points.push [90,50]
-points.push [10,90]
-points.push [50,90]
-points.push [90,90]
+for i in [10,50,90]
+	for j in [10,50,90]
+		points.push [j,i]
 
 tri = (i,j,k) ->
 	a = points[i]
@@ -160,10 +151,10 @@ problems.push [
 	-> line 50,50,50,90
 	-> line 50,50,10,50
 
-	-> noFill(); arc 50, 50, 80, 80, 0, HALF_PI
-	-> noFill(); arc 50, 50, 80, 80, HALF_PI, PI
-	-> noFill(); arc 50, 50, 80, 80, PI, PI + HALF_PI
-	-> noFill(); arc 50, 50, 80, 80, PI + HALF_PI, PI + PI
+	-> noFill(); arc 50, 50, 80, 80, 0 * HALF_PI, 1 * HALF_PI
+	-> noFill(); arc 50, 50, 80, 80, 1 * HALF_PI, 2 * HALF_PI
+	-> noFill(); arc 50, 50, 80, 80, 2 * HALF_PI, 3 * HALF_PI
+	-> noFill(); arc 50, 50, 80, 80, 4 * HALF_PI, 4 * HALF_PI
 ]
 
 problems.push [
