@@ -1,5 +1,8 @@
 range = _.range
 echo = console.log
+pressed = false
+
+start = new Date()
 
 bg = 'green'
 
@@ -10,35 +13,13 @@ facit = 0
 
 correct = 0
 wrong = 0
-start = new Date()
 
-pressed = false
-
-points = []
-points.push [10,10]
-points.push [50,10]
-points.push [90,10]
-points.push [10,50]
-points.push [50,50]
-points.push [90,50]
-points.push [10,90]
-points.push [50,90]
-points.push [90,90]
-
-corners = []
-corners.push [0,3,4]
-corners.push [0,1,4]
-corners.push [1,2,4]
-corners.push [2,4,5]
-corners.push [4,5,8]
-corners.push [4,7,8]
-corners.push [4,6,7]
-corners.push [3,4,6]
+problems = []
+nr = 0
 
 newProblem = ->
-	figures = []
-	for i in range 9
-		figures.push _.sample range 255
+	nr = _.sample range problems.length
+	figures =  _.sampleSize range(1 << problems[nr].length), 9
 
 	abcd = [0,0,0,0,0,0,0,0,0]
 	abcd[0] = figures[0]
@@ -73,19 +54,20 @@ buttons.push [50,500]
 buttons.push [150,500]
 buttons.push [250,500]
 
+show = (pattern) ->
+	fill 'white'
+
+	if nr==0 then strokeWeight 3
+	else strokeWeight 1
+
+	for ix in range problems[nr].length
+		if pattern & (1 << ix) then problems[nr][ix]()
+
 window.setup = ->
 	createCanvas 400,650
 	textAlign CENTER,CENTER
 	textSize 48
 	newProblem()
-
-tri = (i,j,k) -> triangle points[i][0],points[i][1],points[j][0],points[j][1],points[k][0],points[k][1]
-
-show = (pattern) ->
-	for ix in range 8
-		corner = corners[ix]
-		bit = 1 << ix
-		if pattern & bit then tri corner[0],corner[1],corner[2]
 
 draw = ->
 	background bg
@@ -145,3 +127,56 @@ window.mousePressed = ->
 			newProblem()
 
 window.mouseReleased = -> pressed = false 
+
+points = []
+points.push [10,10]
+points.push [50,10]
+points.push [90,10]
+points.push [10,50]
+points.push [50,50]
+points.push [90,50]
+points.push [10,90]
+points.push [50,90]
+points.push [90,90]
+
+tri = (i,j,k) ->
+	a = points[i]
+	b = points[j]
+	c = points[k]
+	triangle a[0],a[1],b[0],b[1],c[0],c[1]
+
+problems.push [
+	-> circle 50,30,5
+	-> circle 70,50,5
+	-> circle 50,70,5
+	-> circle 30,50,5
+
+	-> line 50,50,50,10
+	-> line 50,50,90,50
+	-> line 50,50,50,90
+	-> line 50,50,10,50
+
+	-> noFill(); arc 50, 50, 80, 80, 0, HALF_PI
+	-> noFill(); arc 50, 50, 80, 80, HALF_PI, PI
+	-> noFill(); arc 50, 50, 80, 80, PI, PI + HALF_PI
+	-> noFill(); arc 50, 50, 80, 80, PI + HALF_PI, PI + PI
+]
+
+problems.push [
+	-> tri 0,3,4
+	-> tri 0,1,4
+	-> tri 1,2,4
+	-> tri 2,4,5
+	-> tri 4,5,8
+	-> tri 4,7,8
+	-> tri 4,6,7
+	-> tri 3,4,6
+]
+
+problems.push [
+	-> circle 50,50,40
+	-> circle 30,70,40
+	-> circle 70,30,40
+	-> circle 30,30,40
+	-> circle 70,70,40
+]
