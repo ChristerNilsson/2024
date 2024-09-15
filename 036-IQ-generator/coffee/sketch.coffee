@@ -18,31 +18,35 @@ problems = []
 nr = 0
 
 newProblem = ->
-	nr = _.sample range problems.length
-	figures =  _.sampleSize range(1 << problems[nr].length), 9
+	while true
+		nr = _.sample range problems.length
+		figures =  _.sampleSize range(1 << problems[nr].length), 9
 
-	abcd = [0,0,0,0,0,0,0,0,0]
-	abcd[0] = figures[0]
-	abcd[1] = figures[1]
-	abcd[3] = figures[2]
-	abcd[4] = figures[3]
+		abcd = [0,0,0,0,0,0,0,0,0]
+		abcd[0] = figures[0]
+		abcd[1] = figures[1]
+		abcd[3] = figures[2]
+		abcd[4] = figures[3]
 
-	abcd[2] = abcd[0] ^ abcd[1]
-	abcd[5] = abcd[3] ^ abcd[4]
-	abcd[6] = abcd[0] ^ abcd[3]
-	abcd[7] = abcd[1] ^ abcd[4]
-	abcd[8] = abcd[2] ^ abcd[5] # the questionmark
+		abcd[2] = abcd[0] ^ abcd[1]
+		abcd[5] = abcd[3] ^ abcd[4]
+		abcd[6] = abcd[0] ^ abcd[3]
+		abcd[7] = abcd[1] ^ abcd[4]
+		abcd[8] = abcd[2] ^ abcd[5] # the questionmark
 
-	answers = []
-	answers.push figures[4]
-	answers.push figures[5]
-	answers.push figures[6]
-	answers.push figures[7]
-	answers.push figures[8]
-	answers.push abcd[8]
+		answers = []
+		answers.push figures[4]
+		answers.push figures[5]
+		answers.push figures[6]
+		answers.push figures[7]
+		answers.push figures[8]
+		answers.push abcd[8]
 
-	answers = _.shuffle answers
-	facit = answers.indexOf abcd[8]
+		answers = _.uniq answers
+
+		answers = _.shuffle answers
+		facit = answers.indexOf abcd[8]
+		if answers.length == 6 then break
 
 	draw()
 
