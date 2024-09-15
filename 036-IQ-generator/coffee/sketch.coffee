@@ -18,8 +18,8 @@ problems = []
 nr = 0
 
 newProblem = ->
+	nr = _.sample range problems.length
 	while true
-		nr = _.sample range problems.length
 		figures =  _.sampleSize range(1 << problems[nr].length), 9
 
 		abcd = [0,0,0,0,0,0,0,0,0]
@@ -43,8 +43,8 @@ newProblem = ->
 		answers.push abcd[8]
 
 		answers = _.uniq answers
-
 		answers = _.shuffle answers
+		
 		facit = answers.indexOf abcd[8]
 		if answers.length == 6 then break
 
