@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemensam JSON-snutt</title>
+</head>
+<body>
+
+<script type="application/ld+json">
+{
+	"events" : [
+	{
+		"performer": "",
+		"description": "https://www.stockholmsschack.se/inbjudan-knattelag-dm-2024/",
+		"image": "",
+		"name": "Knattelag-DM",
+		"url": "https://www.stockholmsschack.se/events/knattelag-dm/"
+	},
+
+	{
+		"performer": "",
+		"description": "Inbjudan    Tävlings-bestämmelser    Anmälan",
+		"image": "",
+		"name": "LAG-DM DIV 3",
+		"url": "https://www.stockholmsschack.se/events/lag-dm-div-2-6-898-189-821/"
+	},
+
+	{
+		"performer": "",
+		"description": "Inbjudan    Tävlings-bestämmelser    Anmälan",
+		"image": "",
+		"name": "LAG-DM DIV 4",
+		"url": "https://www.stockholmsschack.se/events/lag-dm-div-2-6-898-189-821-759/"
+	},
+
+	{
+		"performer": "",
+		"description": "Inbjudan    Tävlings-bestämmelser    Anmälan",
+		"image": "",
+		"name": "LAG-DM ELIT",
+		"url": "https://www.stockholmsschack.se/events/lag-dm-elit-8/"
+	},
+
+	{
+		"performer": "",
+		"description": "https://www.stockholmsschack.se/inbjudan-nyborjarkurs-i-schack-hosten-2024/",
+		"image": "",
+		"name": "Nybörjarkurs i Schack",
+		"url": "https://www.stockholmsschack.se/events/nyborjarkurs-i-schack-6/"
+	},
+
+	{
+		"performer": "",
+		"description": "Inbjudan | Anmälan | Anmälda",
+		"image": "",
+		"name": "Trojanska Hästens Höst JGP",
+		"url": "https://www.stockholmsschack.se/events/trojanska-hastens-host-jgp/"
+	},
+
+	{
+		"performer": "",
+		"description": "Inbjudan    Tävlings-bestämmelser    Anmälan",
+		"image": "",
+		"name": "LAG-DM DIV 1",
+		"url": "https://www.stockholmsschack.se/events/lag-dm-div-2-6-898-189/"
+	},
+
+	{
+		"performer": "",
+		"description": "https://www.stockholmsschack.se/inbjudan-nyborjarkurs-i-schack-hosten-2024/",
+		"image": "",
+		"name": "Nybörjarkurs i schack",
+		"url": "https://www.stockholmsschack.se/events/nyborjarkurs-i-schack-7/"
+	},
+
+	{
+		"performer": "",
+		"description": "https://www.stockholmsschack.se/inbjudan-lag-dm-i-blixt-2024/",
+		"image": "",
+		"name": "Lag-DM i blixt",
+		"url": "https://www.stockholmsschack.se/events/lag-dm-i-blixt-2/"
+	},
+
+	{
+		"performer": "",
+		"description": "Inbjudan    Tävlings-bestämmelser    Anmälan",
+		"image": "",
+		"name": "LAG-DM DIV 2",
+		"url": "https://www.stockholmsschack.se/events/lag-dm-div-2-7/"
+	},
+
+	{
+		"performer": "",
+		"description": "https://www.stockholmsschack.se/inbjudan-nyborjarkurs-i-schack-hosten-2024/",
+		"image": "",
+		"name": "Nybörjarkurs i schack",
+		"url": "https://www.stockholmsschack.se/events/nyborjarkurs-i-schack-8/"
+	}
+
+	]
+
+}
+
+</script>
+
+<script>
+	// JavaScript för att avläsa JSON-snuttarna från ett gemensamt script
+	document.addEventListener("DOMContentLoaded", function() {
+		// Hämta det gemensamma scriptet med JSON-data
+		const script = document.querySelector('script[type="application/ld+json"]');
+		
+		// Parsar JSON-innehållet
+		try {
+			const jsonData = JSON.parse(script.textContent);
+
+			// Visa den parsade JSON-datan i konsolen
+			console.log(jsonData.events);
+		} catch (error) {
+			console.error("Kunde inte parsa JSON", error);
+		}
+	});
+</script>
+
+</body>
+</html>

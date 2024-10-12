@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index4</title>
+</head>
+<body>
+
+<!-- Ett gemensamt script med flera JSON-objekt -->
+<script type="application/ld+json">
+{
+    "people": [
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Alice",
+            "jobTitle": "Webbutvecklare",
+            "url": "https://example.com/alice"
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Bob",
+            "jobTitle": "Designer",
+            "url": "https://example.com/bob"
+        }
+    ]
+}
+</script>
+
+<script>
+    // JavaScript för att avläsa JSON-snuttarna från ett gemensamt script
+    document.addEventListener("DOMContentLoaded", function() {
+        // Hämta det gemensamma scriptet med JSON-data
+        const script = document.querySelector('script[type="application/ld+json"]');
+        
+        // Parsar JSON-innehållet
+        try {
+            const jsonData = JSON.parse(script.textContent);
+
+            // Visa den parsade JSON-datan i konsolen
+            console.log(jsonData.people);
+        } catch (error) {
+            console.error("Kunde inte parsa JSON", error);
+        }
+    });
+</script>
+
+</body>
+</html>
