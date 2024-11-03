@@ -1,6 +1,8 @@
+from statistics import linear_regression
+
 ocrs = []
-def app(a,b):
-	ocrs.append([a,b])
+def app(a,b,c):
+	ocrs.append([b,c,a])
 
 # Tyresö Open 2024
 # elos = [0,2416,2366,2272,2413,2235,
@@ -102,84 +104,130 @@ def app(a,b):
 # app([30,51,74,82,77,73,76,78],"000F0000") # 81
 # app([73,65,49,81,78,80,69,77],"00000000") # Frirond
 
-elos = [2343,2363,2156,2044,1876,
-        2000,2110,2066,2046,1893,
-        1914,1882,1616,2178,1660,
-        1783,1955,1802,1699,1615,
-        1600,1576,1862,1590,1580,
-        1570,1849,1560,1550,1540]
+# elos = [2343,2363,2156,2044,1876,
+# 		2000,2110,2066,2046,1893,
+# 		1914,1882,1616,2178,1660,
+# 		1783,1955,1802,1699,1615,
+# 		1600,1576,1862,1590,1580,
+# 		1570,1849,1560,1550,1540]
+#
+# app([16,10, 4, 8, 2, 3, 7],"1111111")
+# app([18,11, 9, 7, 1, 8, 4],"111r011")
+# app([15, 5,19,10, 7, 1,12],"1011101")
+# app([25,24, 1,16,14, 5, 2],"1101110")
+# app([29, 3, 8, 9,17, 4,11],"1101101")
+# app([12, 9,18,11,16,10, 8],"1010111")
+# app([13,23,17, 2, 3, 9, 1],"111r010")
+# app([20,19, 5, 1,11, 2, 6],"1110100")
+# app([22, 6, 2, 5,13, 7,16],"1100101")
+# app([28, 1,13, 3,20, 6,19],"1010101")
+# app([30, 2,15, 6, 8,23, 5],"1011010")
+# app([ 6,22,20,25,21,17, 3],"0101110")
+# app([ 7,29,10,27, 9,21,17],"0101011")
+# app([19,17,30,23, 4,15,18],"0011011")
+# app([ 3,28,11,24,27,14,25],"010r101")
+# app([ 1,30,24, 4, 6,20, 9],"0110010")
+# app([26,14, 7,20, 5,12,13],"1101000")
+# app([ 2,26, 6,22,23,24,14],"0101010")
+# app([14, 8, 3,21,29,22,10],"1000110")
+# app([ 8,21,12,17,10,16,29],"0110001")
+# app([23,20,26,19,12,13,28],"0011001")
+# app([ 9,12,29,18,26,19,30],"0010101")
+# app([21, 7,25,14,18,11,24],"10r010r")
+# app([27, 4,16,15,25,18,23],"100r10r")
+# app([ 4,27,23,12,24,26,15],"01r0010")
+# app([17,18,21,28,22,25,27],"0001001")
+# app([24,25,28,13,15,30,26],"0010010")
+# app([10,15,27,26,30,29,21],"0000110")
+# app([ 5,13,22,30,19,28,20],"0001000")
+# app([11,16,14,29,28,27,22],"0000000")
 
-app([16,10, 4, 8, 2, 3, 7],"1111111")
-app([18,11, 9, 7, 1, 8, 4],"111r011")
-app([15, 5,19,10, 7, 1,12],"1011101")
-app([25,24, 1,16,14, 5, 2],"1101110")
-app([29, 3, 8, 9,17, 4,11],"1101101")
-app([12, 9,18,11,16,10, 8],"1010111")
-app([13,23,17, 2, 3, 9, 1],"111r010")
-app([20,19, 5, 1,11, 2, 6],"1110100")
-app([22, 6, 2, 5,13, 7,16],"1100101")
-app([28, 1,13, 3,20, 6,19],"1010101")
-app([30, 2,15, 6, 8,23, 5],"1011010")
-app([ 6,22,20,25,21,17, 3],"0101110")
-app([ 7,29,10,27, 9,21,17],"0101011")
-app([19,17,30,23, 4,15,18],"0011011")
-app([ 3,28,11,24,27,14,25],"010r101")
-app([ 1,30,24, 4, 6,20, 9],"0110010")
-app([26,14, 7,20, 5,12,13],"1101000")
-app([ 2,26, 6,22,23,24,14],"0101010")
-app([14, 8, 3,21,29,22,10],"1000110")
-app([ 8,21,12,17,10,16,29],"0110001")
-app([23,20,26,19,12,13,28],"0011001")
-app([ 9,12,29,18,26,19,30],"0010101")
-app([21, 7,25,14,18,11,24],"10r010r")
-app([27, 4,16,15,25,18,23],"100r10r")
-app([ 4,27,23,12,24,26,15],"01r0010")
-app([17,18,21,28,22,25,27],"0001001")
-app([24,25,28,13,15,30,26],"0010010")
-app([10,15,27,26,30,29,21],"0000110")
-app([ 5,13,22,30,19,28,20],"0001000")
-app([11,16,14,29,28,27,22],"0000000")
+
+# FairPair 2024-10-30
+elos = [1612,1425,1598,1666,1884,
+		1815,1713,1570,1603,1815,
+		1693,1476,1771,1801]
+
+app(7,[13, 4,11,10],"1111")
+app(8,[ 3,12, 2, 1],"1111")
+app(6, [ 5,14,10,11],"1101")
+app(2,[12, 9, 8,14],"1101")
+app(10,[14, 5, 6, 7],"1010")
+app(5,[ 6,10,14,13],"0110")
+app(13,[ 7,11, 4, 5],"0101")
+app(4,[11, 7,13, 9],"1010")
+app(9,[ 1, 2, 3, 4],"1001")
+app(3,[ 8, 1, 9,12],"0r10")
+app(1,[ 9, 3,12, 8],"0r10")
+app(12,[ 2, 8, 1, 3],"0001")
+app(14,[10, 6, 5, 2],"0000")
+app(11,[ 4,13, 7, 6],"0000")
 
 def expected_score(opponent_ratings, own_rating):
-    return sum(
-        1 / (1 + 10**((opponent_rating - own_rating) / 400))
-        for opponent_rating in opponent_ratings
-    )
+	return sum(
+		1 / (1 + 10**((opponent_rating - own_rating) / 400))
+		for opponent_rating in opponent_ratings
+	)
 
 def performance_rating(opponent_ratings, score):
-    lo, hi = 0, 4000
-    while hi - lo > 0.001:
-        mid = (lo + hi) / 2
-        if expected_score(opponent_ratings, mid) < score:
-            lo = mid
-        else:
-            hi = mid
-    return round(mid,1)
+	lo, hi = 0, 4000
+	while hi - lo > 0.001:
+		mid = (lo + hi) / 2
+		if expected_score(opponent_ratings, mid) < score:
+			lo = mid
+		else:
+			hi = mid
+	return round(mid,1)
 
-def linear_rating(opponent_ratings, score):
-	return (sum(opponent_ratings)+score*400)/8
+def perf_rat(opponent_ratings, score, fiktiv_remi):
+	return performance_rating(opponent_ratings + [fiktiv_remi], score + 0.5)
 
-# print(performance_rating([1851, 2457, 1989, 2379, 2407], 4))  # should be 2551
+# def linear_rating(opponent_ratings, score):
+# 	#	return (sum(opponent_ratings)+score*400)/5
+# 	n = len(opponent_ratings)
+# 	avg = sum(opponent_ratings)/n
+# 	return avg + 800 * (score/n - 0.5)
 
-result = []
-for i in range(81):
-	# elo = elos[i]
+# print(performance_rating([1851, 2457, 1989, 2379, 2407], 4))  # 2551
+# print(linear_rating([1851, 2457, 1989, 2379, 2407], 4)) # 2457
+# print(linear_rating([2400, 2500, 2600], 2.5)) # 2767
+
+medel = sum(elos)/len(elos)
+
+for i in range(len(elos)):
+	ratings = []
+	t = 0
 	ocr = ocrs[i]
-	opps = ocr[0]
-	res = ocr[1]
-	a = 0
-	for r in range(8):
-		b = elos[opps[r]] - 396
-		if res[r] == '1': a+=b
-		if res[r] == 'r': a+=b/2
-		# if res[r] == '0': a+=
-		if res[r] == 'F': a+=b
-		if res[r] == 'W': a+=b
-		# if res[r] == 'L': a+=-1
-		# if res[r] == ' ': a+=0
-	result.append([a,elos[i+1]])
-result.sort()
-result.reverse()
-for res in result:
-	print(res)
+	elo = elos[ocr[2] - 1]
+	for r in range(4):
+		opps = ocr[0]
+		results = ocr[1]
+		ratings.append(elos[opps[r]-1])
+		if results[r] == '1': t += 1
+		if results[r] == 'r': t += 0.5
+	# print(elos[i+1],linear_rating(ratings,t))
+	print(elo, performance_rating(ratings,t),perf_rat(ratings,t,medel))
 
+
+# result = []
+# for i in range(81):
+# 	# elo = elos[i]
+# 	ocr = ocrs[i]
+# 	opps = ocr[0]
+# 	res = ocr[1]
+# 	a = 0
+# 	for r in range(8):
+# 		b = elos[opps[r]] - 396
+# 		if res[r] == '1': a+=b
+# 		if res[r] == 'r': a+=b/2
+# 		# if res[r] == '0': a+=
+# 		if res[r] == 'F': a+=b
+# 		if res[r] == 'W': a+=b
+# 		# if res[r] == 'L': a+=-1
+# 		# if res[r] == ' ': a+=0
+# 	result.append([a,elos[i+1]])
+# result.sort()
+# result.reverse()
+# for res in result:
+# 	print(res)
+#
