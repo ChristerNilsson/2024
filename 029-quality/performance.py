@@ -3,11 +3,12 @@ def app(a,b,c):
 	ocrs.append([a,b,c]) # id, opps, result
 
 # Lilla Stockholm GP 2024-11-01
+ZERO = 0 # eller 1400 eller 2000. Det spelar ingen roll, det konvergerar i alla fall.
 elos = [1593,1644,1699,1577,1579,1635,1724,1566,1551,1657,
-		1639,1672,1678,1400,1400,1400,1539,1400,1400,1400,
-		1400,1400,1400,1504,1594,1589,1513,1439]
+		1639,1672,1678,ZERO,ZERO,ZERO,1539,ZERO,ZERO,ZERO,
+		ZERO,ZERO,ZERO,1504,1594,1589,1513,1439]
 
-nollor = [13,14,15,17,18,19,20,21,22]
+nollor = [13,14,15, 17,18,19, 20,21,22]
 
 app(1,[20,3,2,13,11,4,6,7],6) # Tuva
 app(2,[18,22,1,4,12,13,3,6],6)
@@ -54,11 +55,12 @@ def performance(opponent_ratings, score):
 def enhanced(opponent_ratings, score, fiktiv_remi):
 	return performance(opponent_ratings + [fiktiv_remi], score + 0.5)
 
-medel = sum(elos)/len(elos)
-print('medel',medel)
-
 perf = [0] * 28
-for iter in range(10):
+
+for iter in range(20):
+
+	medel = sum(elos) / len(elos)
+	print('medel', medel)
 
 	for i in range(len(elos)):
 		ior = ocrs[i]
@@ -66,12 +68,11 @@ for iter in range(10):
 		opps = ior[1]
 		res = ior[2]
 		ratings = [elos[opp-1] for opp in opps]
-		perf[i] = performance(ratings,res)
+		perf[i] = enhanced(ratings,res,medel)
 
-	print(elos)
-	for i in range(len(elos)):
-		if i in nollor:
-			elos[i] = perf[i]
+	print(" ".join([f"{elo:.1f}" for elo in elos]))
+	for i in nollor:
+		elos[i] = perf[i]
 
 medel = sum(elos)/len(elos)
 print('medel',medel)
@@ -82,7 +83,7 @@ for i in range(len(elos)):
 	opps = ior[1]
 	res = ior[2]
 	ratings = [elos[opp - 1] for opp in opps]
-	# perf[i] = performance(ratings, res)
+	print()
 	print(i+1, elo, performance(ratings,res), enhanced(ratings,res,medel), res)
 
 
