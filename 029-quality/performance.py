@@ -1,8 +1,69 @@
-from statistics import linear_regression
-
 ocrs = []
 def app(a,b,c):
-	ocrs.append([b,c,a])
+	ocrs.append([a,b,c]) # id, opps, result
+
+# Lilla Stockholm GP 2024-11-01
+elos = [1593,1644,1699,1577,1579,1635,1724,1566,1551,1657,
+		1639,1672,1678,1400,1400,1400,1539,1400,1400,1400,
+		1400,1400,1400,1504,1594,1589,1513,1439]
+
+app(1,[20,3,2,13,11,4,6,7],6) # Tuva
+app(2,[18,22,1,4,12,13,3,6],6)
+app(3,[17,1,20,21,6,12,2,4],6)
+app(4,[23,12,6,2,5,1,7,3],5.5)
+app(5,[16,13,10,7,4,11,19,12],5.5)
+app(6,[15,7,4,14,3,17,1,2],5)
+app(7,[9,6,14,5,18,8,4,1],5)
+app(8,[22,15,11,20,14,7,21,17],5)
+app(9,[7,20,17,24,16,25,22,15],5)
+app(10,[28,21,5,17,27,23,14,11],5)
+app(11,[19,14,8,22,1,5,13,10],4.5)
+app(12,[24,4,16,25,2,3,17,5],4.5)
+app(13,[27,5,21,1,19,2,11,24],4.5)
+app(14,[26,11,7,6,8,27,10,21],4)
+app(15,[6,8,28,23,26,20,18,9],4)
+app(16,[5,27,12,18,9,28,23,20],4)
+app(17,[3,19,9,10,21,6,12,8],3.5)
+app(18,[2,26,24,16,7,21,15,22],3.5)
+app(19,[11,17,27,26,13,22,5],3.5)
+app(20,[1,9,3,8,23,15,27,16],3)
+app(21,[25,10,13,3,17,18,8,14],3)
+app(22,[8,2,26,11,25,19,9,18],3)
+app(23,[4,24,25,15,20,10,16,28],3)
+app(24,[12,23,18,9,28,26,25,13],3)
+app(25,[21,28,23,12,22,9,24,26],3)
+app(26,[14,18,22,19,15,24,28,25],1.5)
+app(27,[13,16,19,28,10,14,20],1)
+app(28,[10,25,15,27,16,26,23],0.5)
+
+def expected_score(ratings, own_rating):
+	return sum(1 / (1 + 10**((rating - own_rating) / 400)) for rating in ratings)
+
+def performance(opponent_ratings, score):
+	lo, hi = 0, 4000
+	while hi - lo > 0.001:
+		mid = (lo + hi) / 2
+		if expected_score(opponent_ratings, mid) < score:
+			lo = mid
+		else:
+			hi = mid
+	return round(mid,1)
+
+def enhanced(opponent_ratings, score, fiktiv_remi):
+	return performance(opponent_ratings + [fiktiv_remi], score + 0.5)
+
+medel = sum(elos)/len(elos)
+print('medel',medel)
+
+for i in range(len(elos)):
+	ior = ocrs[i]
+	elo = elos[ior[0] - 1]
+	opps = ior[1]
+	res = ior[2]
+	ratings = [elos[opp-1] for opp in opps]
+	print(i+1, elo, performance(ratings,res), enhanced(ratings,res,medel), res)
+
+################################
 
 # Tyresö Open 2024
 # elos = [0,2416,2366,2272,2413,2235,
@@ -142,92 +203,22 @@ def app(a,b,c):
 # app([ 5,13,22,30,19,28,20],"0001000")
 # app([11,16,14,29,28,27,22],"0000000")
 
-
 # FairPair 2024-10-30
-elos = [1612,1425,1598,1666,1884,
-		1815,1713,1570,1603,1815,
-		1693,1476,1771,1801]
-
-app(7,[13, 4,11,10],"1111")
-app(8,[ 3,12, 2, 1],"1111")
-app(6, [ 5,14,10,11],"1101")
-app(2,[12, 9, 8,14],"1101")
-app(10,[14, 5, 6, 7],"1010")
-app(5,[ 6,10,14,13],"0110")
-app(13,[ 7,11, 4, 5],"0101")
-app(4,[11, 7,13, 9],"1010")
-app(9,[ 1, 2, 3, 4],"1001")
-app(3,[ 8, 1, 9,12],"0r10")
-app(1,[ 9, 3,12, 8],"0r10")
-app(12,[ 2, 8, 1, 3],"0001")
-app(14,[10, 6, 5, 2],"0000")
-app(11,[ 4,13, 7, 6],"0000")
-
-def expected_score(opponent_ratings, own_rating):
-	return sum(
-		1 / (1 + 10**((opponent_rating - own_rating) / 400))
-		for opponent_rating in opponent_ratings
-	)
-
-def performance_rating(opponent_ratings, score):
-	lo, hi = 0, 4000
-	while hi - lo > 0.001:
-		mid = (lo + hi) / 2
-		if expected_score(opponent_ratings, mid) < score:
-			lo = mid
-		else:
-			hi = mid
-	return round(mid,1)
-
-def perf_rat(opponent_ratings, score, fiktiv_remi):
-	return performance_rating(opponent_ratings + [fiktiv_remi], score + 0.5)
-
-# def linear_rating(opponent_ratings, score):
-# 	#	return (sum(opponent_ratings)+score*400)/5
-# 	n = len(opponent_ratings)
-# 	avg = sum(opponent_ratings)/n
-# 	return avg + 800 * (score/n - 0.5)
-
-# print(performance_rating([1851, 2457, 1989, 2379, 2407], 4))  # 2551
-# print(linear_rating([1851, 2457, 1989, 2379, 2407], 4)) # 2457
-# print(linear_rating([2400, 2500, 2600], 2.5)) # 2767
-
-medel = sum(elos)/len(elos)
-
-for i in range(len(elos)):
-	ratings = []
-	t = 0
-	ocr = ocrs[i]
-	elo = elos[ocr[2] - 1]
-	for r in range(4):
-		opps = ocr[0]
-		results = ocr[1]
-		ratings.append(elos[opps[r]-1])
-		if results[r] == '1': t += 1
-		if results[r] == 'r': t += 0.5
-	# print(elos[i+1],linear_rating(ratings,t))
-	print(elo, performance_rating(ratings,t),perf_rat(ratings,t,medel))
-
-
-# result = []
-# for i in range(81):
-# 	# elo = elos[i]
-# 	ocr = ocrs[i]
-# 	opps = ocr[0]
-# 	res = ocr[1]
-# 	a = 0
-# 	for r in range(8):
-# 		b = elos[opps[r]] - 396
-# 		if res[r] == '1': a+=b
-# 		if res[r] == 'r': a+=b/2
-# 		# if res[r] == '0': a+=
-# 		if res[r] == 'F': a+=b
-# 		if res[r] == 'W': a+=b
-# 		# if res[r] == 'L': a+=-1
-# 		# if res[r] == ' ': a+=0
-# 	result.append([a,elos[i+1]])
-# result.sort()
-# result.reverse()
-# for res in result:
-# 	print(res)
+# elos = [1612,1425,1598,1666,1884,
+# 		1815,1713,1570,1603,1815,
+# 		1693,1476,1771,1801]
 #
+# app(7,[13, 4,11,10],"1111")
+# app(8,[ 3,12, 2, 1],"1111")
+# app(6, [ 5,14,10,11],"1101")
+# app(2,[12, 9, 8,14],"1101")
+# app(10,[14, 5, 6, 7],"1010")
+# app(5,[ 6,10,14,13],"0110")
+# app(13,[ 7,11, 4, 5],"0101")
+# app(4,[11, 7,13, 9],"1010")
+# app(9,[ 1, 2, 3, 4],"1001")
+# app(3,[ 8, 1, 9,12],"0r10")
+# app(1,[ 9, 3,12, 8],"0r10")
+# app(12,[ 2, 8, 1, 3],"0001")
+# app(14,[10, 6, 5, 2],"0000")
+# app(11,[ 4,13, 7, 6],"0000")
