@@ -7,6 +7,8 @@ elos = [1593,1644,1699,1577,1579,1635,1724,1566,1551,1657,
 		1639,1672,1678,1400,1400,1400,1539,1400,1400,1400,
 		1400,1400,1400,1504,1594,1589,1513,1439]
 
+nollor = [13,14,15,17,18,19,20,21,22]
+
 app(1,[20,3,2,13,11,4,6,7],6) # Tuva
 app(2,[18,22,1,4,12,13,3,6],6)
 app(3,[17,1,20,21,6,12,2,4],6)
@@ -55,13 +57,34 @@ def enhanced(opponent_ratings, score, fiktiv_remi):
 medel = sum(elos)/len(elos)
 print('medel',medel)
 
+perf = [0] * 28
+for iter in range(10):
+
+	for i in range(len(elos)):
+		ior = ocrs[i]
+		elo = elos[ior[0] - 1]
+		opps = ior[1]
+		res = ior[2]
+		ratings = [elos[opp-1] for opp in opps]
+		perf[i] = performance(ratings,res)
+
+	print(elos)
+	for i in range(len(elos)):
+		if i in nollor:
+			elos[i] = perf[i]
+
+medel = sum(elos)/len(elos)
+print('medel',medel)
+
 for i in range(len(elos)):
 	ior = ocrs[i]
 	elo = elos[ior[0] - 1]
 	opps = ior[1]
 	res = ior[2]
-	ratings = [elos[opp-1] for opp in opps]
+	ratings = [elos[opp - 1] for opp in opps]
+	# perf[i] = performance(ratings, res)
 	print(i+1, elo, performance(ratings,res), enhanced(ratings,res,medel), res)
+
 
 ################################
 
