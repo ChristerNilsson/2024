@@ -2,65 +2,71 @@ ocrs = []
 def app(a,b,c):
 	ocrs.append([a,b,c]) # id, opps, result
 
-# Lilla Stockholm GP 2024-11-01
-ZERO = 0 # eller 1400 eller 2000. Det spelar ingen roll, det konvergerar i alla fall.
-elos = [1593,1644,1699,1577,1579,1635,1724,1566,1551,1657,
-		1639,1672,1678,ZERO,ZERO,ZERO,1539,ZERO,ZERO,ZERO,
-		ZERO,ZERO,ZERO,1504,1594,1589,1513,1439]
+ZERO = 0
 
-nollor = [13,14,15, 17,18,19, 20,21,22]
+# FairPair 2024-10-30
+#elos = [1612,1425,1598,1666,1884,1815,1713,1570,1603,1815,1693,1476,1771,1801]
+elos =  [1612,1425,1598,1666,1884,1815,1713,1570,1603,1815,1693,1476,1771,1801]
 
-app(1,[20,3,2,13,11,4,6,7],6) # Tuva
-app(2,[18,22,1,4,12,13,3,6],6)
-app(3,[17,1,20,21,6,12,2,4],6)
-app(4,[23,12,6,2,5,1,7,3],5.5)
-app(5,[16,13,10,7,4,11,19,12],5.5)
-app(6,[15,7,4,14,3,17,1,2],5)
-app(7,[9,6,14,5,18,8,4,1],5)
-app(8,[22,15,11,20,14,7,21,17],5)
-app(9,[7,20,17,24,16,25,22,15],5)
-app(10,[28,21,5,17,27,23,14,11],5)
-app(11,[19,14,8,22,1,5,13,10],4.5)
-app(12,[24,4,16,25,2,3,17,5],4.5)
-app(13,[27,5,21,1,19,2,11,24],4.5)
-app(14,[26,11,7,6,8,27,10,21],4)
-app(15,[6,8,28,23,26,20,18,9],4)
-app(16,[5,27,12,18,9,28,23,20],4)
-app(17,[3,19,9,10,21,6,12,8],3.5)
-app(18,[2,26,24,16,7,21,15,22],3.5)
-app(19,[11,17,27,26,13,22,5],3.5)
-app(20,[1,9,3,8,23,15,27,16],3)
-app(21,[25,10,13,3,17,18,8,14],3)
-app(22,[8,2,26,11,25,19,9,18],3)
-app(23,[4,24,25,15,20,10,16,28],3)
-app(24,[12,23,18,9,28,26,25,13],3)
-app(25,[21,28,23,12,22,9,24,26],3)
-app(26,[14,18,22,19,15,24,28,25],1.5)
-app(27,[13,16,19,28,10,14,20],1)
-app(28,[10,25,15,27,16,26,23],0.5)
+app( 7,[13, 4,11,10],4)
+app( 8,[ 3,12, 2, 1],4)
+app( 6,[ 5,14,10,11],3)
+app( 2,[12, 9, 8,14],3)
+app(10,[14, 5, 6, 7],2)
+app( 5,[ 6,10,14,13],2)
+app(13,[ 7,11, 4, 5],2)
+app( 4,[11, 7,13, 9],2)
+app( 9,[ 1, 2, 3, 4],2)
+app( 3,[ 8, 1, 9,12],1.5)
+app( 1,[ 9, 3,12, 8],1.5)
+app(12,[ 2, 8, 1, 3],1)
+app(14,[10, 6, 5, 2],0)
+app(11,[ 4,13, 7, 6],0)
+
+nollor = []
+for i in range(len(elos)):
+	if elos[i] == ZERO:
+		nollor.append(i)
+# print(nollor)
 
 def expected_score(ratings, own_rating):
 	return sum(1 / (1 + 10**((rating - own_rating) / 400)) for rating in ratings)
+assert expected_score([1700],1800) == 0.6400649998028851
+assert expected_score([1800],1700) == 0.35993500019711494
+assert expected_score([1800,1800],1700) == 0.7198700003942299
+assert expected_score([1700,1700],1800) == 1.2801299996057702
+
+def average(ratings): return sum(ratings)/len(ratings)
+assert average([1771,1666,1693,1815]) == 1736.25
 
 def performance(opponent_ratings, score):
 	lo, hi = 0, 4000
 	while hi - lo > 0.001:
 		mid = (lo + hi) / 2
-		if expected_score(opponent_ratings, mid) < score:
-			lo = mid
-		else:
+		if expected_score(opponent_ratings, mid) > score:
 			hi = mid
+		else:
+			lo = mid
 	return round(mid,1)
 
-def enhanced(opponent_ratings, score, fiktiv_remi):
-	return performance(opponent_ratings + [fiktiv_remi], score + 0.5)
+assert performance([1771,1666,1693,1815],3.5) == 2082.0
+assert performance([1771,1666,1693,1815,1736.25],4) == 1982.0
+assert performance([1771,1666,1693,1815],4) == 4000.0
+assert performance([1771,1666,1693,1815,1736.25],4.5) == 2124.5
 
-perf = [0] * 28
+def enhanced(opponent_ratings, score):
+	fiktiv_remi = average(opponent_ratings)
+	res = performance(opponent_ratings + [fiktiv_remi], score + 0.5)
+	return round(res,1)
+assert enhanced([1771,1666,1693,1815],3.5) == 1982.0
+assert enhanced([1771,1666,1693,1815],4.0) == 2124.5
 
-for iter in range(20):
+perf = [0] * len(elos)
 
-	medel = sum(elos) / len(elos)
-	print('medel', medel)
+for iter in range(1):
+
+	# medel = sum(elos) / len(elos)
+	# print('medel', medel)
 
 	for i in range(len(elos)):
 		ior = ocrs[i]
@@ -68,14 +74,15 @@ for iter in range(20):
 		opps = ior[1]
 		res = ior[2]
 		ratings = [elos[opp-1] for opp in opps]
-		perf[i] = enhanced(ratings,res,medel)
+		perf[i] = enhanced(ratings,res)
+		#perf[i] = performance(ratings,res)
 
-	print(" ".join([f"{elo:.1f}" for elo in elos]))
+	#print(" ".join([f"{elo:.1f}" for elo in elos]))
 	for i in nollor:
 		elos[i] = perf[i]
 
-medel = sum(elos)/len(elos)
-print('medel',medel)
+# medel = sum(elos)/len(elos)
+# print('medel',medel)
 
 for i in range(len(elos)):
 	ior = ocrs[i]
@@ -83,9 +90,13 @@ for i in range(len(elos)):
 	opps = ior[1]
 	res = ior[2]
 	ratings = [elos[opp - 1] for opp in opps]
+	# print()
+	p = performance(ratings,res)
+	e = enhanced(ratings,res)
+	s=str(i+1)
+	if len(s)==1: s=' '+s
 	print()
-	print(i+1, elo, performance(ratings,res), enhanced(ratings,res,medel), res)
-
+	print(s, f"{elo:.1f}", p, e, f"{res:.1f}")
 
 ################################
 
@@ -246,3 +257,39 @@ for i in range(len(elos)):
 # app(12,[ 2, 8, 1, 3],"0001")
 # app(14,[10, 6, 5, 2],"0000")
 # app(11,[ 4,13, 7, 6],"0000")
+
+##################################
+
+# Lilla Stockholm GP 2024-11-01
+# elos = [1593,1644,1699,1577,1579,1635,1724,1566,1551,1657,
+#  		1639,1672,1678,ZERO,ZERO,ZERO,1539,ZERO,ZERO,ZERO,
+#  		ZERO,ZERO,ZERO,1504,1594,1589,1513,1439]
+#
+# app(1,[20,3,2,13,11,4,6,7],6) # Tuva
+# app(2,[18,22,1,4,12,13,3,6],6)
+# app(3,[17,1,20,21,6,12,2,4],6)
+# app(4,[23,12,6,2,5,1,7,3],5.5)
+# app(5,[16,13,10,7,4,11,19,12],5.5)
+# app(6,[15,7,4,14,3,17,1,2],5)
+# app(7,[9,6,14,5,18,8,4,1],5)
+# app(8,[22,15,11,20,14,7,21,17],5)
+# app(9,[7,20,17,24,16,25,22,15],5)
+# app(10,[28,21,5,17,27,23,14,11],5)
+# app(11,[19,14,8,22,1,5,13,10],4.5)
+# app(12,[24,4,16,25,2,3,17,5],4.5)
+# app(13,[27,5,21,1,19,2,11,24],4.5)
+# app(14,[26,11,7,6,8,27,10,21],4)
+# app(15,[6,8,28,23,26,20,18,9],4)
+# app(16,[5,27,12,18,9,28,23,20],4)
+# app(17,[3,19,9,10,21,6,12,8],3.5)
+# app(18,[2,26,24,16,7,21,15,22],3.5)
+# app(19,[11,17,27,26,13,22,5],3.5)
+# app(20,[1,9,3,8,23,15,27,16],3)
+# app(21,[25,10,13,3,17,18,8,14],3)
+# app(22,[8,2,26,11,25,19,9,18],3)
+# app(23,[4,24,25,15,20,10,16,28],3)
+# app(24,[12,23,18,9,28,26,25,13],3)
+# app(25,[21,28,23,12,22,9,24,26],3)
+# app(26,[14,18,22,19,15,24,28,25],1.5)
+# app(27,[13,16,19,28,10,14,20],1)
+# app(28,[10,25,15,27,16,26,23],0.5)
