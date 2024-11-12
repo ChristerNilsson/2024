@@ -96,12 +96,12 @@ draw = ->
 	
 	noStroke()
 	fill 'yellow'
-	text "#{correct} of #{correct+wrong}",4*unit,2*unit
-	text round((new Date()-start)/1000,1),4*unit,4.7*unit
+	text "#{correct} of #{correct+wrong}",2*unit,0.3*unit
+	text round((new Date()-start)/1000,1)+"s",2*unit,3.8*unit
 	fill 'white'
 
 	push()
-	translate 0,350
+	translate 0,2.5*unit
 
 	stroke 'black'
 	for i in range 3
