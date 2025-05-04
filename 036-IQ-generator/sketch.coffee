@@ -20,8 +20,10 @@ unit = 0
 
 newProblem = ->
 	nr = (nr+1) % problems.length
+	odd = _.sample [false,true]
+	n = problems[nr].length # 5,12 eller 8
 	while true
-		figures =  _.sampleSize range(1 << problems[nr].length), 9
+		figures =  _.sampleSize range(1 << n), 9
 
 		abcd = [0,0,0,0,0,0,0,0,0]
 		abcd[0] = figures[0]
@@ -29,11 +31,14 @@ newProblem = ->
 		abcd[3] = figures[2]
 		abcd[4] = figures[3]
 
-		abcd[2] = abcd[0] ^ abcd[1]
-		abcd[5] = abcd[3] ^ abcd[4]
-		abcd[6] = abcd[0] ^ abcd[3]
-		abcd[7] = abcd[1] ^ abcd[4]
-		abcd[8] = abcd[2] ^ abcd[5] # the secret questionmark
+		x = if odd then 2 ** n - 1 else 0
+		echo x
+
+		abcd[2] = abcd[0] ^ abcd[1] ^ x
+		abcd[5] = abcd[3] ^ abcd[4] ^ x
+		abcd[6] = abcd[0] ^ abcd[3] ^ x
+		abcd[7] = abcd[1] ^ abcd[4] ^ x
+		abcd[8] = abcd[2] ^ abcd[5] ^ x # the secret questionmark
 
 		answers = []
 		answers.push figures[4]
