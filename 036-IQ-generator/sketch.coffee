@@ -15,7 +15,7 @@ correct = 0
 wrong = 0
 
 problems = []
-nr = 0
+nr = -1
 unit = 0 
 
 newProblem = ->
@@ -61,8 +61,7 @@ buttons = []
 show = (pattern) ->
 	fill 'white'
 
-	if nr==0 then strokeWeight 3
-	else strokeWeight 1
+	strokeWeight if nr==2 then 7 else 1
 
 	for ix in range problems[nr].length
 		if pattern & (1 << ix) then problems[nr][ix]()
@@ -153,20 +152,11 @@ makeProblems = ->
 		triangle a[0],a[1],b[0],b[1],c[0],c[1]
 
 	problems.push [
-		-> circle 0.5*unit,0.3*unit,5
-		-> circle 0.25*unit,0.5*unit,5
-		-> circle 0.7*unit,0.5*unit,5
-		-> circle 0.5*unit,0.7*unit,5
-
-		-> line 0.1*unit,0.5*unit,0.5*unit,0.5*unit
-		-> line 0.5*unit,0.5*unit,0.9*unit,0.5*unit
-		-> line 0.5*unit,0.1*unit,0.5*unit,0.5*unit
-		-> line 0.5*unit,0.5*unit,0.5*unit,0.9*unit
-
-		-> noFill(); arc 0.5*unit, 0.5*unit, 0.8*unit, 0.8*unit, 0 * HALF_PI, 1 * HALF_PI
-		-> noFill(); arc 0.5*unit, 0.5*unit, 0.8*unit, 0.8*unit, 1 * HALF_PI, 2 * HALF_PI
-		-> noFill(); arc 0.5*unit, 0.5*unit, 0.8*unit, 0.8*unit, 2 * HALF_PI, 3 * HALF_PI
-		-> noFill(); arc 0.5*unit, 0.5*unit, 0.8*unit, 0.8*unit, 3 * HALF_PI, 4 * HALF_PI
+		-> circle 0.5*unit,0.5*unit,0.5*unit
+		-> circle 0.3*unit,0.7*unit,0.5*unit
+		-> circle 0.7*unit,0.3*unit,0.5*unit
+		-> circle 0.3*unit,0.3*unit,0.5*unit
+		-> circle 0.7*unit,0.7*unit,0.5*unit
 	]
 
 	problems.push [
@@ -181,10 +171,21 @@ makeProblems = ->
 	]
 
 	problems.push [
-		-> circle 0.5*unit,0.5*unit,0.5*unit
-		-> circle 0.3*unit,0.7*unit,0.5*unit
-		-> circle 0.7*unit,0.3*unit,0.5*unit
-		-> circle 0.3*unit,0.3*unit,0.5*unit
-		-> circle 0.7*unit,0.7*unit,0.5*unit
+		-> circle 0.5*unit,0.3*unit,9
+		-> circle 0.25*unit,0.5*unit,9
+		-> circle 0.7*unit,0.5*unit,9
+		-> circle 0.5*unit,0.7*unit,9
+
+		-> line 0.1*unit,0.5*unit,0.5*unit,0.5*unit
+		-> line 0.5*unit,0.5*unit,0.9*unit,0.5*unit
+		-> line 0.5*unit,0.1*unit,0.5*unit,0.5*unit
+		-> line 0.5*unit,0.5*unit,0.5*unit,0.9*unit
+
+		-> noFill(); arc 0.5*unit, 0.5*unit, 0.8*unit, 0.8*unit, 0 * HALF_PI, 1 * HALF_PI
+		-> noFill(); arc 0.5*unit, 0.5*unit, 0.8*unit, 0.8*unit, 1 * HALF_PI, 2 * HALF_PI
+		-> noFill(); arc 0.5*unit, 0.5*unit, 0.8*unit, 0.8*unit, 2 * HALF_PI, 3 * HALF_PI
+		-> noFill(); arc 0.5*unit, 0.5*unit, 0.8*unit, 0.8*unit, 3 * HALF_PI, 4 * HALF_PI
 	]
+
+
 
