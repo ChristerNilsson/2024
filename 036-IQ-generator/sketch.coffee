@@ -4,26 +4,34 @@ pressed = false
 
 start = new Date()
 
-bg = 'green'
+landscape = true
+
+bg = 'grey'
 
 abcd = []
 figures = []
 answers = []
-facit = 0 
 
 correct = 0
 wrong = 0
+
+expected = -1
+actual = -1
+feedback = false
 
 problems = []
 nr = -1
 unit = 0 
 
 newProblem = ->
+	feedback = false
+	expected = -1
+	actual = -1
 	nr = (nr+1) % problems.length
 	odd = _.sample [false,true]
 	n = problems[nr].length # 5,12 eller 8
 	while true
-		figures =  _.sampleSize range(1 << n), 9
+		figures = _.sampleSize range(1 << n), 9
 
 		abcd = [0,0,0,0,0,0,0,0,0]
 		abcd[0] = figures[0]
@@ -32,7 +40,6 @@ newProblem = ->
 		abcd[4] = figures[3]
 
 		x = if odd then 2 ** n - 1 else 0
-		echo x
 
 		abcd[2] = abcd[0] ^ abcd[1] ^ x
 		abcd[5] = abcd[3] ^ abcd[4] ^ x
@@ -51,35 +58,46 @@ newProblem = ->
 		answers = _.uniq answers
 		answers = _.shuffle answers
 		
-		facit = answers.indexOf abcd[8]
+		expected = answers.indexOf abcd[8]
 		if answers.length == 6 then break
-
-	draw()
 
 buttons = []
 
-show = (pattern) ->
-	fill 'white'
+show = (pattern,i=-1,expected,actual) ->
+	stroke 'black'
+	if actual == -1 then fill 'white'
+	else if expected == i
+		fill 'green'
+		rect 0,0,unit,unit
+	else if actual == i
+		fill 'red'
+		rect 0,0,unit,unit
 
-	strokeWeight if nr==2 then 7 else 1
+	strokeWeight if nr==1 then 1 else 0.03 * unit
+	stroke 'white'
+	fill 'white'
 
 	for ix in range problems[nr].length
 		if pattern & (1 << ix) then problems[nr][ix]()
 
 window.setup = ->
 	createCanvas innerWidth-5,innerHeight-5
-	unit = height/6.5
-	for i in [3.7*unit,4.7*unit]
-		for j in [0.5*unit,1.5*unit,2.5*unit]
-			buttons.push [j,i]
+	unit = width/7.5
+
+	for j in [1*unit,2*unit]
+		for i in [4*unit,5*unit,6*unit]
+			buttons.push [i,j]
 	makeProblems()
 	textAlign CENTER,CENTER
-	textSize 48
+	textSize 0.5 * unit
 	newProblem()
 
-draw = ->
-	background bg
+window.draw = ->
+	background 'grey'
 	stroke 'black'
+	strokeWeight 0.03 * unit
+
+	# Rita 4x4 linjer
 	xs = [0.5*unit,1.5*unit,2.5*unit,3.5*unit]
 	ys = [1.5*unit,2.5*unit,3.5*unit]
 	for i in range 4
@@ -87,54 +105,67 @@ draw = ->
 		line xs[i],xs[0],xs[i],xs[3]
 
 	stroke 'white'
+
+	# Rita 3x3 problem
 	for i in range 3
 		for j in range 3
 			push()
 			translate (i+0.5)*unit,(j+0.5)*unit
 			if i==2 and j==2
-				stroke 'black'
-				text '?',unit/2,unit/2
+				fill 'white'
+				textSize unit
+				text '?',unit/2,0.55 * unit
 			else
-				show abcd[3*i+j]
+				noStroke()
+				show abcd[i+3*j],-1,-1,-1
 			pop()
 	
 	noStroke()
 	fill 'yellow'
-	text "#{correct} of #{correct+wrong}",2*unit,0.3*unit
-	text round((new Date()-start)/1000,1)+"s",2*unit,3.8*unit
+	text "#{correct} of #{correct+wrong}",5.5*unit,0.7*unit
+	text round((new Date()-start)/1000)+"s", 5.5*unit,3.3*unit
 	fill 'white'
 
+	# Answers
 	push()
-	translate 0,2.5*unit
+	translate 3.5*unit,0
 
+	# Rita 3x4 linjer
 	stroke 'black'
-	for i in range 3
-		line xs[0],ys[i],xs[3],ys[i]
+	strokeWeight 0.03 * unit
+	xs = [0.5*unit,1.5*unit,2.5*unit,3.5*unit]
+	ys = [1.0*unit,2.0*unit,3.0*unit]
 	for i in range 4
 		line xs[i],ys[0],xs[i],ys[2]
+	for i in range 3
+		line xs[0],ys[i],xs[3],ys[i]
 
+	# Rita 3x2 svar
 	stroke 'white'
 	for i in range 3
 		for j in range 2
 			push()
-			translate xs[i],ys[j]
-			show answers[i+3*j]
+			translate xs[i], ys[j] 
+			show answers[i+3*j], i+3*j,expected,actual
 			pop()
 	pop()
 
 window.mousePressed = ->
 	if pressed then return
 	pressed = true
+	if feedback
+		newProblem()
+		return
 	for i in range buttons.length
 		[x,y] = buttons[i]
 		if x < mouseX < x+unit and y < mouseY < y+unit
-			if facit == i
-				bg = 'green'
+			actual = i
+			if expected == actual
 				correct += 1
+				newProblem()
 			else 
-				bg = 'red'
 				wrong += 1
-			newProblem()
+				feedback = true
 
 window.mouseReleased = -> pressed = false 
 
@@ -186,6 +217,3 @@ makeProblems = ->
 		-> noFill(); arc 0.5*unit, 0.5*unit, 0.8*unit, 0.8*unit, 2 * HALF_PI, 3 * HALF_PI
 		-> noFill(); arc 0.5*unit, 0.5*unit, 0.8*unit, 0.8*unit, 3 * HALF_PI, 4 * HALF_PI
 	]
-
-
-
